@@ -12,17 +12,18 @@ class AuthorizeController {
     }
   
     def authenticate = {
-//        def user = User.findByUserNameAndPassword(params.userName, params.password)
-//        if(user){
-//            session.usuario = user                  
-//            session.user.role = user.role                  
-//        }else{
-//            flash.message = "Sorry, ${params.userName}. Try againt."     
-//        }
+        def usuario = Usuario.findByUserNameAndPassword(params.userName, params.password)
+        if(usuario){
+            session.usuario = usuario                  
+            session.usuario.rol = usuario.rol                 
+			flash.message = "Hello  ${params.userName}. "
+        }else{
+            flash.message = "Sorry, ${params.userName}. Try againt."     
+        }
     }
   
     def logout = {
-        flash.message = "Bye bye ${session.user} !!"
+        flash.message = "Bye bye ${session.usuario} !!"
         session.usuario = null        
         redirect(action: "login")
     }  

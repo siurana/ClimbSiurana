@@ -17,7 +17,7 @@ class BootStrap {
 
 		def role_general = Rol.findByNombre('ROLE_GENERAL_USER')
 		if (!role_general) {
-			role_general = new Rol(nombre: 'ROLE_GENERAL_User', descripcion: 'General User')
+			role_general = new Rol(nombre: 'ROLE_GENERAL_USER', descripcion: 'General User')
 			role_general.save(flush: true)
 		}
 

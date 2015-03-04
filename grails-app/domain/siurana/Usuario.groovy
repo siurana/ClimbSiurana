@@ -21,7 +21,7 @@ class Usuario {
 	static constraints = {
 		userName blank: false, unique: true
 		password blank: false, password: true
-		rol
+		rol()
 		nombre blank: false
 		apellido blank: false
 		nroDocumento blank: false, size: 8..10 
