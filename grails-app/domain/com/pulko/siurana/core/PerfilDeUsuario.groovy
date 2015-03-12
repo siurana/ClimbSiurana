@@ -25,4 +25,8 @@ class PerfilDeUsuario {
 			m.delete()
 		}
 	}
+	
+	@Override String toString() {
+		return getPerfil()
+	}
 }

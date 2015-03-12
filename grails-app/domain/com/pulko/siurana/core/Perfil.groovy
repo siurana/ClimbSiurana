@@ -1,15 +1,19 @@
 package com.pulko.siurana.core
 
 class Perfil {
-	String nombre
-	double arancel
+	String nombre	
 	String descripcion
-	static hasMany = [perfilesDeUsuario: PerfilDeUsuario]
+	double arancel
+	Boolean esLibre
+	Integer nroDeClases  
+	static hasMany = [perfilesDeUsuario: PerfilDeUsuario, asistencia: Asistencia]
 	
 	static constraints = {
 		nombre blank: false, unique: true
-		arancel blank: true
 		descripcion blank: false, maxSize: 50
+		arancel blank: true
+		esLibre blank: false
+		nroDeClases nullable:true, inList: [4, 8, 12, 16]
 	}
    
 	@Override String toString() {

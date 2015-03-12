@@ -1,4 +1,6 @@
 package com.pulko.siurana.security
+import com.pulko.siurana.core.Usuario;
+import com.pulko.siurana.core.Rol;
 
 class AuthorizeController {
 
@@ -12,6 +14,7 @@ class AuthorizeController {
     }
   
     def authenticate = {
+		
         def usuario = Usuario.findByUserNameAndPassword(params.userName, params.password)
         if(usuario){
             session.usuario = usuario                  

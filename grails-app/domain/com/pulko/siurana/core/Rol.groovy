@@ -9,7 +9,7 @@ class Rol {
 	
 		static constraints = {
 			nombre blank: false, unique: true 
-			descripcion blank: false, maxSize: 50
+			descripcion blank: false, maxSize: 50			
 		}
 	   
 		@Override String toString() {
