@@ -43,29 +43,17 @@
 				</li>
 				</g:if>							
 			
-				<g:if test="${usuarioInstance?.asistencias}">
+				<g:if test="${asistenciasDeHoy}">
 				<li class="fieldcontain">
 					<span id="asistencias-label" class="property-label"><g:message code="usuario.asistencias.label" default="Asistencias" /></span>
 					
-						<g:each in="${usuarioInstance.asistencias}" var="a">
-						<span class="property-value" aria-labelledby="asistencias-label"><g:link controller="asistencia" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></span>
+						<g:each in="${asistenciasDeHoy}" var="a">
+						<span class="property-value" aria-labelledby="asistencias-label">${a?.perfil?.encodeAsHTML()} - ${a?.registrada?.encodeAsHTML()}</span>
 						</g:each>
 					
 				</li>
 				</g:if>
-			
-				<g:if test="${usuarioInstance?.perfilesDeUsuario}">
-				<li class="fieldcontain">
-					<span id="perfilesDeUsuario-label" class="property-label"><g:message code="usuario.perfilesDeUsuario.label" default="Perfiles De Usuario" /></span>
-					
-						<g:each in="${usuarioInstance.perfilesDeUsuario}" var="p">
-						<span class="property-value" aria-labelledby="perfilesDeUsuario-label"><g:link controller="perfilDeUsuario" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-							
-			
+						
 			</ol>			
 		</div>
 	</body>

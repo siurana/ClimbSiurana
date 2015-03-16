@@ -15,18 +15,29 @@ class AsistenciaController {
 	}
 	
 	def showUser(){		
-		def usuarioList=Usuario.findAllByUserName(params.searchText)
-		if(usuarioList==null || usuarioList.size() == 0){
-			flash.message = "No se encontro socio con la busqueda "+ params.searchText
-			respond usuarioList, view:'openSearch'
-			return
-		} else if(usuarioList.size() > 1){
-			flash.message = "Se encontraron "+ usuarioList.size() +" socios"
-			respond usuarioList, view:'selectedUser'
+		Usuario usuario=Usuario.findByNroDocumento(params.searchText)
+		if(!usuario){
+			request.withFormat {
+				form multipartForm {
+					flash.message = "No se encontro socio con DNI: "+ params.searchText
+					redirect action: "openSearch", method: "GET"
+				}
+				'*'{ render status: NOT_FOUND }
+			}
 			return
 		} else {
-			flash.message=""
-			respond usuarioList[0]
+			def asistenciasDeHoy = [] as Set
+			usuario.asistencias.each { 
+				if(it.isToday()){
+					asistenciasDeHoy << [perfil: it.getPerfil(),registrada: Boolean.TRUE]
+				}
+			}
+			usuario.perfilesDeUsuario.each { 
+				if(!asistenciasDeHoy.contains([perfil: it.getPerfil(),registrada: Boolean.TRUE])){
+					asistenciasDeHoy << [perfil: it.getPerfil(),registrada: Boolean.FALSE]	
+				}
+			}
+			respond usuario, model: [asistenciasDeHoy: asistenciasDeHoy]
 		}
 				
 	}
@@ -42,7 +53,7 @@ class AsistenciaController {
 
     def create() {
 		Asistencia asistenciaInstance = new Asistencia(params)
-		asistenciaInstance.fechaHora = new Date()
+		asistenciaInstance.fechaHora = new Date()		
         respond asistenciaInstance
     }
 

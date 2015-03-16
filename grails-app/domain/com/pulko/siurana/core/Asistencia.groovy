@@ -15,4 +15,9 @@ class Asistencia {
 	}
 	
 	def beforeInsert = { fechaHora = new Date() }
+	
+	public Boolean isToday(){		
+		getFechaHora().clearTime()==(new Date()).clearTime()
+	} 	
+
 }
