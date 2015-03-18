@@ -3,7 +3,7 @@
 	<head>
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'asistencia.label', default: 'Asistencia')}" />
-		<title><g:message code="default.create.label" args="[entityName]" /></title>
+		<title>Asistencia</title>
 	</head>
 	<body>
 	
@@ -22,7 +22,7 @@
 			<g:form url="[resource:asistenciaInstance, action:'showUser']" >
 				<fieldset class="form">
 						<label for="perfil">
-							Nombre o DNI:
+							DNI:
 							<span class="required-indicator">*</span>
 						</label>
 						<g:textField name="searchText" required="" value=""/>

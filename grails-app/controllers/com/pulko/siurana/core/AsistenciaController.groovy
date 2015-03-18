@@ -26,6 +26,17 @@ class AsistenciaController {
 		} else {
 			def asistenciasDeHoy = [] as Set
 			boolean tieneAlgunaAsistenciaParaRegistrarElDiaDeHoy=false
+			
+			if(usuario.perfilesDeUsuario.size()==0){
+				request.withFormat {
+					form multipartForm {
+						flash.message = "El socio ${usuario} perfieles cargados"
+						redirect action: "openSearch", method: "GET"
+					}
+					'*'{ render status: NOT_FOUND }
+				}
+			}
+			
 			usuario.asistencias.each {
 				if(it.isToday()){
 					asistenciasDeHoy << [perfil: it.getPerfil(), idSocio: usuario.id, registrada: Boolean.TRUE]
