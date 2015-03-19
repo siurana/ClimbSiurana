@@ -12,7 +12,7 @@
 
 </head>
 <body>
-	<div class="content scaffold-create">
+	<div class="content scaffold-create" style="background-image: url('${resource(dir: 'images', file: 'siurana_just_logo.jpg')}'); background-repeat: no-repeat;  background-attachment: fixed; background-position: 300px 0px; ">
 		<h1>Access to Site</h1>
 		<g:if test="${flash.message}">
 			<div class="message">
@@ -21,7 +21,7 @@
 		</g:if>
 		<g:form action="authenticate" method="post">
 			<fieldset class="form">
-				<div
+				<div  style="margin-top: 50px;"
 					class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'userName', 'error')} required">
 					<label for="userName"> <g:message
 							code="usuario.userName.label" default="User" /> <span
@@ -30,7 +30,7 @@
 					<g:field type="text" name="userName" required=""
 						value="${fieldValue(bean: userInstance, field: 'userName')}" />
 				</div>
-				<div
+				<div style="margin-bottom: 30px;"
 					class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'password', 'error')} ">
 					<label for="password"> <g:message
 							code="usuario.password.label" default="password" />

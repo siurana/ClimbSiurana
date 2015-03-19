@@ -80,17 +80,15 @@ margin-top: 0;
 
 </style>
 </head>
-<body>
+<body background="${resource(dir: 'images', file: 'siurana_just_logo.jpg')}">
 
 <g:if test="${flash.message}">
   <div class="message" role="status">${flash.message}</div>
 </g:if>  
 
-<pulko:item name="Calendario" controller="menuManager" action="menuDashboardRlse" image="scheduler.png" />
-<pulko:item name="Usuarios" controller="usuario" action="index" image="users.png" />
-<pulko:item name="Perfiles" controller="Perfil" action="index" image="Stack-logo.png" />
-<pulko:item name="Asistencia" controller="asistencia" action="index" image="hand.png" />
-<pulko:item name="Ayuda" controller="menuManager" action="menuHelp" image="help.png" />
+<img src="${resource(dir: 'images', file: 'siurana.jpg')}" height="80%" width="80%"
+			alt="Siurana"
+			style="margin-left: 10px; border: 0px; margin-top: 0px; margin-bottom: 0px; z-index: 1" />
 
 </body>
 </html>

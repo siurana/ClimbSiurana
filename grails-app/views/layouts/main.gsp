@@ -11,7 +11,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title><g:layoutTitle default="Grails" /></title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<g:setProvider library="jquery" />
 <link rel="shortcut icon"
 	href="${resource(dir: 'images', file: 'siurana_plus.jpg')}"
 	type="image/x-icon">
@@ -24,7 +23,10 @@
 	type="text/css">
 <link rel="stylesheet"
 	href="${resource(dir: 'css', file: 'scheduler.css')}" type="text/css">
-
+<link rel="stylesheet" href="${resource(dir: 'css', file: 'menu.css')}"
+	type="text/css">
+<g:javascript library="jquery" plugin="jquery"/>
+<r:layoutResources/>
 <g:layoutHead />
 </head>
 <body>
@@ -40,12 +42,38 @@
 	</div>
 	<div id="header">
 		<pulko:loginControl />
+		<pulko:menu />
+		<script type="text/javascript">
+		jQuery(window).load(function() {
+
+			$("#nav > li > a").click(function() { // binding onclick
+				if ($(this).parent().hasClass('selectedMenu')) {
+					$("#nav .selectedMenu div div").slideUp(100); // hiding popups
+					$("#nav .selectedMenu").removeClass("selectedMenu");
+				} else {
+					$("#nav .selectedMenu div div").slideUp(100); // hiding popups
+					$("#nav .selectedMenu").removeClass("selectedMenu");
+
+					if ($(this).next(".subs").length) {
+						$(this).parent().addClass("selectedMenu"); // display popup
+						$(this).next(".subs").children().slideDown(200);
+					}
+				}
+			});
+
+		});
+	</script>
+				
 	</div>
+	       
+
+
 	<g:layoutBody />
 	<div class="footer" role="contentinfo"></div>
 	<div id="spinner" class="spinner" style="display: none;">
 		<g:message code="spinner.alt" default="Loading&hellip;" />
 	</div>
 	<g:javascript library="application" />
+	
 </body>
 </html>
