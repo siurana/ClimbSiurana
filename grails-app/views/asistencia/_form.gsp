@@ -2,12 +2,12 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: asistenciaInstance, field: 'fechaHora', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: asistenciaInstance, field: 'fechaHora', 'error')} ">
 	<label for="fechaHora">
 		<g:message code="asistencia.fechaHora.label" default="Fecha Hora" />
-		<span class="required-indicator">*</span>
+		
 	</label>
-	<g:formatDate format="dd/MM/yyyy - HH:mm" date="${asistenciaInstance?.fechaHora}" />
+	<g:datePicker name="fechaHora" format="dd/MM/yyyy - HH:mm" precision="day"  value="${asistenciaInstance?.fechaHora}" default="none" noSelection="['': '']" />
 
 </div>
 

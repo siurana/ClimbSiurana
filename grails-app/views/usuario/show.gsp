@@ -72,7 +72,7 @@
 				<li class="fieldcontain">
 					<span id="fechaDeNacimiento-label" class="property-label"><g:message code="usuario.fechaDeNacimiento.label" default="Fecha De Nacimiento" /></span>
 					
-						<span class="property-value" aria-labelledby="fechaDeNacimiento-label"><g:formatDate format="dd/MM/yyyy"  date="${usuarioInstance?.fechaDeNacimiento}" /></span>
+						<span class="property-value" aria-labelledby="fechaDeNacimiento-label"><g:formatDate date="${usuarioInstance?.fechaDeNacimiento}" /></span>
 					
 				</li>
 				</g:if>
@@ -104,24 +104,6 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${usuarioInstance?.fechaDeAlta}">
-				<li class="fieldcontain">
-					<span id="fechaDeAlta-label" class="property-label"><g:message code="usuario.fechaDeAlta.label" default="Fecha De Alta" /></span>
-					
-						<span class="property-value" aria-labelledby="fechaDeAlta-label"><g:formatDate format="dd/MM/yyyy" date="${usuarioInstance?.fechaDeAlta}" /></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${usuarioInstance?.fechaDeModificacion}">
-				<li class="fieldcontain">
-					<span id="fechaDeModificacion-label" class="property-label"><g:message code="usuario.fechaDeModificacion.label" default="Fecha De Modificacion" /></span>
-					
-						<span class="property-value" aria-labelledby="fechaDeModificacion-label"><g:formatDate format="dd/MM/yyyy" date="${usuarioInstance?.fechaDeModificacion}" /></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${usuarioInstance?.activo}">
 				<li class="fieldcontain">
 					<span id="activo-label" class="property-label"><g:message code="usuario.activo.label" default="Activo" /></span>
@@ -131,11 +113,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${usuarioInstance?.deleted}">
+				<g:if test="${usuarioInstance?.comentarios}">
 				<li class="fieldcontain">
-					<span id="deleted-label" class="property-label"><g:message code="usuario.deleted.label" default="Deleted" /></span>
+					<span id="comentarios-label" class="property-label"><g:message code="usuario.comentarios.label" default="Comentarios" /></span>
 					
-						<span class="property-value" aria-labelledby="deleted-label"><g:formatBoolean boolean="${usuarioInstance?.deleted}" /></span>
+						<span class="property-value" aria-labelledby="comentarios-label"><g:fieldValue bean="${usuarioInstance}" field="comentarios"/></span>
 					
 				</li>
 				</g:if>

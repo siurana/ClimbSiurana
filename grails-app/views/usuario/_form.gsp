@@ -52,25 +52,25 @@
 		<g:message code="usuario.fechaDeNacimiento.label" default="Fecha De Nacimiento" />
 		
 	</label>
-	<g:datePicker name="fechaDeNacimiento" precision="day"  value="${usuarioInstance?.fechaDeNacimiento}" default="none" noSelection="['': '']" />
+	<g:datePicker name="fechaDeNacimiento" format="dd/MM/yyyy" precision="day"  value="${usuarioInstance?.fechaDeNacimiento}" default="none" noSelection="['': '']" />
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'telefono', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'telefono', 'error')} ">
 	<label for="telefono">
 		<g:message code="usuario.telefono.label" default="Telefono" />
-		<span class="required-indicator">*</span>
+		
 	</label>
-	<g:textField name="telefono" required="" value="${usuarioInstance?.telefono}"/>
+	<g:textField name="telefono" value="${usuarioInstance?.telefono}"/>
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'email', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'email', 'error')} ">
 	<label for="email">
 		<g:message code="usuario.email.label" default="Email" />
-		<span class="required-indicator">*</span>
+		
 	</label>
-	<g:field type="email" name="email" required="" value="${usuarioInstance?.email}"/>
+	<g:field type="email" name="email" value="${usuarioInstance?.email}"/>
 
 </div>
 
@@ -92,12 +92,12 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'deleted', 'error')} ">
-	<label for="deleted">
-		<g:message code="usuario.deleted.label" default="Deleted" />
+<div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'comentarios', 'error')} ">
+	<label for="comentarios">
+		<g:message code="usuario.comentarios.label" default="Comentarios" />
 		
 	</label>
-	<g:checkBox name="deleted" value="${usuarioInstance?.deleted}" />
+	<g:textArea name="comentarios" cols="40" rows="5" value="${usuarioInstance?.comentarios}"/>
 
 </div>
 

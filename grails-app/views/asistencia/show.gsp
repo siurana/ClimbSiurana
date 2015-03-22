@@ -21,12 +21,13 @@
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<ol class="property-list asistencia">			
+			<ol class="property-list asistencia">
+			
 				<g:if test="${asistenciaInstance?.fechaHora}">
 				<li class="fieldcontain">
 					<span id="fechaHora-label" class="property-label"><g:message code="asistencia.fechaHora.label" default="Fecha Hora" /></span>
 					
-						<span class="property-value" aria-labelledby="fechaHora-label"><g:formatDate format="dd/MM/yyyy - HH:mm" date="${asistenciaInstance?.fechaHora}" /></span>
+						<span class="property-value" aria-labelledby="fechaHora-label"><g:formatDate date="${asistenciaInstance?.fechaHora}" /></span>
 					
 				</li>
 				</g:if>

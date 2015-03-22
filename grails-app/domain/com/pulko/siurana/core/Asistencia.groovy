@@ -7,7 +7,7 @@ class Asistencia {
 	Date fechaHora
 	
     static constraints = {
-		fechaHora nullable: true
+		fechaHora nullable: true, format: 'dd/MM/yyyy - HH:mm'
     }
 	
 	@Override String toString() {

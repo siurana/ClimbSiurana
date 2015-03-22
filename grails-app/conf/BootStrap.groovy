@@ -36,8 +36,16 @@ class BootStrap {
 		if (!pablo) {
 			pablo = new Usuario(userName: 'ptissera', nombre: 'Pablo', apellido: 'Tissera', nroDocumento: '28852504',password: '123', telefono: '234234324',
 			activo: true, sexo: "M", fechaDeNacimiento: new Date(), email: 'pablo.tissera@hp.com', deleted: false)
-			pablo.setRol(role_super)
+			pablo.setRol(role_super)			
 			pablo.save flush: true
+		}
+		
+		def fran = Usuario.findByUserName('fpedrozo')
+		if (!fran) {
+			fran = new Usuario(userName: 'fpedrozo', nombre: 'Francisco', apellido: 'Pedrozo', nroDocumento: '21023739',password: '123', telefono: '3516510058',
+			activo: true, sexo: "M", fechaDeNacimiento: new Date(), email: 'fpedrozo@hotmail.com', deleted: false)
+			fran.setRol(role_super)
+			fran.save flush: true
 		}
 	}
 
@@ -48,11 +56,11 @@ class BootStrap {
 			perfil1.save(flush: true)
 		}
 
-		def perfil2 = Perfil.findByNombre('Palestra niños')
-		if (!perfil2) {
-			perfil2 = new Perfil(nombre: 'Palestra niños', descripcion: 'Clases dirigidas a ni±os entre 6 y 11 años', arancel: 300, esLibre: false,	nroDeClases: 8)
-			perfil2.save(flush: true)
-		}
+//		def perfil2 = Perfil.findByNombre('Palestra niños')
+//		if (!perfil2) {
+//			perfil2 = new Perfil(nombre: 'Palestra niños', descripcion: 'Clases dirigidas a ni±os entre 6 y 11 años', arancel: 300, esLibre: false,	nroDeClases: 8)
+//			perfil2.save(flush: true)
+//		}
 
 		def perfil3 = Perfil.findByNombre('Yoga')
 		if (!perfil3) {
