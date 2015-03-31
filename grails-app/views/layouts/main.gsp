@@ -11,69 +11,31 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title><g:layoutTitle default="Grails" /></title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon"
-	href="${resource(dir: 'images', file: 'siurana_plus.jpg')}"
-	type="image/x-icon">
 <link rel="stylesheet"
 	href="${resource(dir: 'css', file: 'mainStyle.css')}" type="text/css">
-<link rel="stylesheet"
-	href="${resource(dir: 'css', file: 'mobileStyle.css')}" type="text/css">
-<link rel="stylesheet"
-	href="${resource(dir: 'css', file: 'loginControl.css')}"
-	type="text/css">
-<link rel="stylesheet"
-	href="${resource(dir: 'css', file: 'scheduler.css')}" type="text/css">
-<link rel="stylesheet" href="${resource(dir: 'css', file: 'menu.css')}"
-	type="text/css">
-<g:javascript library="jquery" plugin="jquery"/>
-<r:layoutResources/>
+
+<r:layoutResources />
 <g:layoutHead />
 </head>
 <body>
-	<div id="grailsLogo" role="banner" style="width: 100%; height: 90px;">
-		<img src="${resource(dir: 'images', file: 'siurana_plus.jpg')}"
-			alt="Siurana"
-			style="margin-left: 10px; border: 3px solid #404040; margin-top: 10px; position: absolute; z-index: 1" />
-		<div
-			style="padding: 29px 150px; width: 600px; color: #B1B1B1; font-size: 35px; position: absolute; z-index: 1">
-			Siurana Climbing v
-			<g:meta name="app.version" />
+	<pulko:loginControl />
+	<div id="wrapper">
+		<g:layoutBody />
+		
+		<div id="spinner" class="spinner" style="display: none;">
+			<g:message code="spinner.alt" default="Loading&hellip;" />
 		</div>
+		<g:javascript library="application" />
+		<fieldset class="footerFill"></fieldset>
 	</div>
-	<div id="header">
-		<pulko:loginControl />
-		<pulko:menu />
-		<script type="text/javascript">
-		jQuery(window).load(function() {
 
-			$("#nav > li > a").click(function() { // binding onclick
-				if ($(this).parent().hasClass('selectedMenu')) {
-					$("#nav .selectedMenu div div").slideUp(100); // hiding popups
-					$("#nav .selectedMenu").removeClass("selectedMenu");
-				} else {
-					$("#nav .selectedMenu div div").slideUp(100); // hiding popups
-					$("#nav .selectedMenu").removeClass("selectedMenu");
-
-					if ($(this).next(".subs").length) {
-						$(this).parent().addClass("selectedMenu"); // display popup
-						$(this).next(".subs").children().slideDown(200);
-					}
-				}
-			});
-
-		});
-	</script>
-				
-	</div>
-	       
-
-
-	<g:layoutBody />
-	<div class="footer" role="contentinfo"></div>
-	<div id="spinner" class="spinner" style="display: none;">
-		<g:message code="spinner.alt" default="Loading&hellip;" />
-	</div>
-	<g:javascript library="application" />
-	
+<g:javascript library="jquery" plugin="jquery" />
+	<script>
+    $(function(){
+        	if(!$('.buttons').length){
+            	$('.footerFill').show();
+        	}
+        });
+</script>
 </body>
 </html>

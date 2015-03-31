@@ -11,17 +11,7 @@ h1, h2, h3, h4, h5, h6 {
 /* BASE LAYOUT */
 
 html {
-    background-color: #ddd;
-    background-image: -moz-linear-gradient(center top, #aaa, #ddd);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #aaa), color-stop(1, #ddd));
-    background-image: linear-gradient(top, #aaa, #ddd);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = '#aaaaaa', EndColorStr = '#dddddd');
-    background-repeat: no-repeat;
-    height: 100%;
-    /* change the box model to exclude the padding from the calculation of 100% height (IE8+) */
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+    
 }
 
 html.no-cssgradients {
@@ -37,14 +27,12 @@ html * {
 }
 
 body {
-    background: #ffffff;
-    color: #333333;
-    margin: 0 auto;
-    max-width: 960px;
-    overflow-x: hidden; /* prevents box-shadow causing a horizontal scrollbar in firefox when viewport < 960px wide */
-    -moz-box-shadow: 0 0 0.3em #255b17;
-    -webkit-box-shadow: 0 0 0.3em #255b17;
-    box-shadow: 0 0 0.3em #255b17;
+background-image:url(../images/fondo01.jpg);
+background-repeat:no-repeat;
+background-position:center top;
+overflow-x: hidden;
+   margin: 0;
+   background-color:rgba(0,0,0,1);
 }
 
 #grailsLogo {
@@ -102,11 +90,6 @@ img {
 
 /* GENERAL */
 
-#grailsLogo a {
-    display: inline-block;
-    margin: 1em;
-}
-
 .content {
 }
 
@@ -118,20 +101,6 @@ img {
 
 .scaffold-list h1 {
     border: none;
-}
-
-.footer {
-    background: #343434;
-    color: #000;
-    clear: both;
-    font-size: 0.8em;
-    margin-top: 1.5em;
-    padding: 1em;
-    min-height: 1em;
-}
-
-.footer a {
-    color: #255b17;
 }
 
 .spinner {
@@ -146,13 +115,15 @@ img {
 }
 
 /* NAVIGATION MENU */
-
 .nav {
-    background-color: #efefef;
-    padding: 0.5em 0.75em;
-    -moz-box-shadow: 0 0 3px 1px #aaaaaa;
-    -webkit-box-shadow: 0 0 3px 1px #aaaaaa;
-    box-shadow: 0 0 3px 1px #aaaaaa;
+    background-color: rgba(31,31,31,0.8);
+    overflow: hidden;
+    padding: 0.3em 0.3em 0.3em 2.3em;
+    margin: 0 0 0 0;
+    border: none;
+	position:inherit;	
+	width: 100%;    
+	min-height:29px;
     zoom: 1;
 }
 
@@ -171,13 +142,24 @@ img {
 }
 
 .nav a {
-    color: #666666;
+
     display: block;
     padding: 0.25em 0.7em;
     text-decoration: none;
     -moz-border-radius: 0.3em;
     -webkit-border-radius: 0.3em;
     border-radius: 0.3em;
+	color: rgba(0,204,255,1) !important;
+	margin-right: 20px; 
+	background-color:transparent !important;;
+    border: 2px solid rgba(0,204,255,0.6); !important;
+	padding: 2px 10px 2px 10px; !important;
+    text-decoration: none;
+    -moz-border-radius: 0.7em; !important;
+    -webkit-border-radius: 0.7em; !important;
+    border-radius: 0.7em; !important;
+    font-style: normal !important;
+    transition: 0.5s ease-in-out;
 }
 
 .nav a:active, .nav a:visited {
@@ -185,10 +167,17 @@ img {
 }
 
 .nav a:focus, .nav a:hover {
-    background-color: #999999;
-    color: #ffffff;
+    
     outline: none;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+	outline: none; /* prevents outline in webkit on active links but retains it for tab focus */
+    border: 2px solid rgba(0,255,255,0.8);
+    color: rgba(0,255,255,1) !important;
+	background-color:rgba(0,153,255,0.2) !important;; 
+    text-decoration: none;
+    font-style: italic;
+	-moz-box-shadow: 0 0 0.5em rgba(0,255,255,0.6) !important;
+	-webkit-box-shadow: 0 0 0.5em rgba(0,255,255,0.6) !important;
+	    box-shadow: 0 0 0.5em rgba(0,255,255,0.6) !important;
 }
 
 .no-borderradius .nav a:focus, .no-borderradius .nav a:hover {
@@ -197,7 +186,7 @@ img {
     text-decoration: underline;
 }
 
-.nav a.home, .nav a.dashRlseFlyer, .nav a.dashRlseSchr, .nav a.list, .nav a.create, a.environmentOfTopics{
+.nav a.home, .nav a.list, .nav a.create{
     background-position: 0.7em center;
     background-repeat: no-repeat;
     text-indent: 25px;
@@ -205,20 +194,6 @@ img {
 
 .nav a.home {
     background-image: url(../images/skin/house.png);
-}
-
-.nav a.dashRlseFlyer{
-    background-image: url(../images/Stack-logo.png);
-    background-size: 16px 16px;
-}
-
-.nav a.dashRlseSchr{
-    background-image: url(../images/scheduler.png);
-    background-size: 16px 16px;
-}
-
-.nav a.environmentOfTopics{
-     background-image: url(../images/skin/light_bulb.png);
 }
 
 .nav a.list {
@@ -557,77 +532,19 @@ tr:hover {
 
 /* ACTION BUTTONS */
 
-.buttons {
-    background-color: #efefef;
+.buttons, .footerFill{
+    background-color: rgba(31,31,31,0.8);
     overflow: hidden;
-    padding: 0.3em;
-    -moz-box-shadow: 0 0 3px 1px #aaaaaa;
-    -webkit-box-shadow: 0 0 3px 1px #aaaaaa;
-    box-shadow: 0 0 3px 1px #aaaaaa;
-    margin: 0.1em 0 0 0;
+    padding: 0.3em 0.3em 0.3em 2.3em;
+    margin: 0.3em 0 0 0;
     border: none;
+	position:inherit;
+	min-height: 30px;
+	width: 100%;
 }
 
-.buttons input,
-.buttons a {
-    background-color: transparent;
-    border: 0;
-    color: #666666;
-    cursor: pointer;
-    display: inline-block;
-    margin: 0 0.25em 0;
-    overflow: visible;
-    padding: 0.25em 0.7em;
-    text-decoration: none;
-
-    -moz-border-radius: 0.3em;
-    -webkit-border-radius: 0.3em;
-    border-radius: 0.3em;
-}
-
-.buttons input:hover, .buttons input:focus,
-.buttons a:hover, .buttons a:focus {
-    background-color: #999999;
-    color: #ffffff;
-    outline: none;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
-
-.no-borderradius .buttons input:hover, .no-borderradius .buttons input:focus,
-.no-borderradius .buttons a:hover, .no-borderradius .buttons a:focus {
-    background-color: transparent;
-    color: #444444;
-    text-decoration: underline;
-}
-
-.buttons .delete, .buttons .edit, .buttons .save, .buttons input.environmentOfTopics {
-    background-position: 0.7em center;
-    background-repeat: no-repeat;
-    text-indent: 25px;
-}
-
-.ie6 .buttons input.delete, .ie6 .buttons input.edit, .ie6 .buttons input.save, .buttons input.environmentOfTopics
-.ie7 .buttons input.delete, .ie7 .buttons input.edit, .ie7 .buttons input.save, .buttons input.environmentOfTopics {
-    padding-left: 36px;
-}
-
-.buttons .delete {
-    background-image: url(../images/skin/database_delete.png);
-}
-
-.buttons .edit {
-    background-image: url(../images/skin/database_edit.png);
-}
-
-.buttons .save {
-    background-image: url(../images/skin/database_save.png);
-}
-
-.buttons .environmentOfTopics{
-     background-image: url(../images/skin/light_bulb.png);
+.footerFill{
+	display: none;
 }
  
 a.skip {
@@ -635,109 +552,76 @@ a.skip {
     left: -9999px;
 }
 
-.mainOption div, .mainOptionAsistencia div, .mainOptionAsistenciaReady div{
-            background-color: #eee;
-            background-repeat: no-repeat;
-            background-position: bottom center;
-            background-size: 64px 64px;
-            border: .2em solid #fff;
-            margin: 2em 2em 1.5em 3em;
-            padding: 1em;            
-            width: 12em;
-            height: 6em;
-            float: left;
-            -moz-box-shadow: 0px 0px 1.25em #ccc;
-            -webkit-box-shadow: 0px 0px 1.25em #ccc;
-            box-shadow: 0px 0px 1.25em #ccc;
-            -moz-border-radius: 0.6em;
-            -webkit-border-radius: 0.6em;
-            border-radius: 0.6em;
-            text-align: center;
-    }
-
-.mainOptionAsistencia div, .mainOptionAsistenciaReady div{
-	width: 32em;
-    height: 2em;
-    vertical-align: middle;
-    background-repeat: no-repeat; 
-    background-position: left center;
-    text-align: left;
-    padding-left: 4.5em;
-    margin: 0.5em 0em 0.5em 3em;
-}
-
-.mainOptionAsistenciaReady div{
-            background-color: #fdffcc;
-            -moz-box-shadow: 0px 0px 1.25em #ccc;
-            -webkit-box-shadow: 0px 0px 1.25em #ccc;
-            box-shadow: 0px 0px 1.25em #f5fc03;
-    }
-    
-.mainOption:hover div, .mainOptionAsistencia:hover div{
-            background-color: #efc;
-            -moz-box-shadow: 0px 0px 1.25em #ccc;
-            -webkit-box-shadow: 0px 0px 1.25em #ccc;
-            box-shadow: 0px 0px 1.25em chartreuse;
-    }
-    
-/* ACTION BUTTONS ADD*/
-
-.buttons_add {
-	background-color: #e7efef;
-	overflow: hidden;
-	padding: 0.3em;
-	   -moz-box-shadow: 0 0 3px 1px #aaaaaa;
-	-webkit-box-shadow: 0 0 3px 1px #aaaaaa;
-	        box-shadow: 0 0 3px 1px #aaaaaa;
-	margin: 0.1em 0 0 0;
-	border: none;
-}
-
-.buttons_add input,
-.buttons_add a {
-	background-color: transparent;
+#login{
+	width: 100%;
 	border: 0;
-	color: #666666;
-	cursor: pointer;
-	display: inline-block;
-	margin: 0 0.25em 0;
-	overflow: visible;
-	padding: 0.25em 0.7em;
-	text-decoration: none;
-
-	   -moz-border-radius: 0.3em;
-	-webkit-border-radius: 0.3em;
-	        border-radius: 0.3em;
+	position:inherit;
+	background-color:rgba(51,51,51,0.7);
+	text-align:right;
+	padding-bottom: 0.5em;
+	padding-top: 0.5em;
+	   -moz-box-shadow: 0 0 1em rgba(255,153,0,0.7) !important;
+	-webkit-box-shadow: 0 0 1em rgba(255,153,0,0.7) !important;
+	        box-shadow: 0 0 1em rgba(255,153,0,0.7) !important;
+	margin-bottom:15px;
+	margin-left:0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	}
+	
+#login label{
+	border-right: 2px solid rgba(153,153,153,1);
+	padding-right: 10px;
+	margin-right: 10px;
+	color:rgba(204,204,204,1);
+	
+	}
+#login a:link,#login a:visited,#login a:hover, 
+.buttons a:link,.buttons a:visited,.buttons a:hover,
+.buttons input[type=submit]{
+	color:rgba(255,153,51,1) !important;
+	margin-right: 20px; 
+	background-color:transparent !important;;
+    border: 2px solid rgba(255,153,51,0.6); !important;
+	padding: 2px 10px 2px 10px; !important;
+    text-decoration: none;
+    -moz-border-radius: 0.7em; !important;
+    -webkit-border-radius: 0.7em; !important;
+    border-radius: 0.7em; !important;
+    font-style: normal !important;
+    transition: 0.5s ease-in-out;
+	}
+	
+#login a:hover,#login a:active,
+.buttons a:hover,.buttons a:active,
+.buttons input:hover,.buttons input:active	 {
+    outline: none; /* prevents outline in webkit on active links but retains it for tab focus */
+    border: 2px solid rgba(255,204,51,0.8);
+    color: rgba(255,204,51,1) !important;
+	background-color:rgba(0,153,255,0.2) !important;; 
+    text-decoration: none;
+    font-style: italic;
+	-moz-box-shadow: 0 0 0.5em rgba(255,153,0,0.6) !important;
+	-webkit-box-shadow: 0 0 0.5em rgba(255,153,0,0.6) !important;
+	    box-shadow: 0 0 0.5em rgba(255,153,0,0.6) !important;
 }
 
-.buttons_add input:hover, .buttons_add input:focus,
-.buttons_add a:hover, .buttons_add a:focus {
-	background-color: #999999;
-	color: #ffffff;
-	outline: none;
-	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
-	   -moz-box-shadow: none;
-	-webkit-box-shadow: none;
-	        box-shadow: none;
-}
-
-.no-borderradius .buttons_add input:hover, .no-borderradius .buttons_add input:focus,
-.no-borderradius .buttons_add a:hover, .no-borderradius .buttons_add a:focus {
-	background-color: transparent;
-	color: #444444;
-	text-decoration: underline;
-}
-
- .buttons_add .add, .buttons_add .cerrar, .buttons_add .aprobar,  .buttons_add .cancelar, .buttons_add .ejecutar, 
- .buttons_add .viaticos, .buttons_add .cobrar, .buttons_add .pagar
- {
-	background-position: 0.7em center;
-        background-size: 16px 16px;
-	background-repeat: no-repeat;
-	text-indent: 25px;
-}
-
-
-.buttons_add .add {
-	background-image: url(../images/skin/database_add.png);
+#wrapper{
+		width:961px;
+		background: rgba(255,255,255,0.8);
+	    color: #333333;
+    	margin: 0 auto;
+		margin-top: 40px !important;
+    overflow-x: hidden; /* prevents box-shadow causing a horizontal scrollbar in firefox when viewport < 960px wide */
+    -moz-box-shadow: 0 0 1em 0.2em rgba(255,153,0,0.8);
+    -webkit-box-shadow: 0 0 1em 0.2em rgba(255,153,0,0.8);
+    box-shadow: 0 0 1em 0.2em rgba(255,153,0,0.8);
+	border: 10px solid rgba(0,0,0,0.6);
+	border-radius: 30px;
+	-moz-border-radius: 30px;
+	-webkit-border-radius: 30px;
+	}
+	
+.moreBottomMargin{
+	margin-bottom: 300px; 
 }
