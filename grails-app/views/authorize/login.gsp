@@ -1,18 +1,11 @@
-<!--
-  To change this template, choose Tools | Templates
-  and open the template in the editor.
--->
-
-<%@ page contentType="text/html;charset=UTF-8" %>
-
+<!DOCTYPE html>
 <html>
 <head>
 <meta name="layout" content="main" />
-<title>Welcome to Ideas v<g:meta name="app.version"/></title>
-
 </head>
 <body>
-	<div class="content scaffold-create" style="background-image: url('${resource(dir: 'images', file: 'siurana_just_logo.jpg')}'); background-repeat: no-repeat;  background-attachment: fixed; background-position: 300px 0px; ">
+	<div class="content scaffold-create">
+	<div class="nav" role="navigation"></div>
 		<h1>Access to Site</h1>
 		<g:if test="${flash.message}">
 			<div class="message">
@@ -41,7 +34,7 @@
 				</div>
 			</fieldset>
 			<fieldset class="buttons">
-				<g:submitButton name="login" class="save" value="Enter" />
+				<g:submitButton name="save" class="save" value="Ingresar" />
 			</fieldset>
 		</g:form>
 	</div>

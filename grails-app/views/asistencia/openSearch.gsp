@@ -8,6 +8,7 @@
 	<body>
 	
 		<div id="create-asistencia" class="content scaffold-create" role="main">
+		<div class="nav" role="navigation"></div>
 			<h1>Buscar Socio para asistencia</h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>

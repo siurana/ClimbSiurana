@@ -12,6 +12,7 @@
 	<a href="#show-usuario" class="skip" tabindex="-1"><g:message
 			code="default.link.skip.label" default="Skip to content&hellip;" /></a>
 	<div id="show-usuario" class="content scaffold-show" role="main">
+		<div class="nav" role="navigation"></div>
 		<h1>
 			<g:fieldValue bean="${usuarioInstance}" field="apellido" />
 			,

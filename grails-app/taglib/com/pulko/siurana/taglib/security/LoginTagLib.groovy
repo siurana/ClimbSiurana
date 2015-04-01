@@ -8,20 +8,18 @@ class LoginTagLib {
 	static encodeAsForTags = [tagName: [taglib:'raw']]
 	
 	def loginControl = { attrs, body ->
+		out << "<div id='login'>"
 		if(session.usuario){			
-			out << "<div class='login'>"                        
-            out << "<div>"
+            out << "<label>"
 			out << " ${session.usuario} "                        
-            out << """${link(action:"changePassword", controller:"user", alt: "Change Password", class: "image"){"<img src=${createLinkTo(dir: "images/taglib", file: "changePassword_2.png")} width='20px' />"}}"""                        
+			out << "</label>"
 			out << """${link(action:"logout", controller:"authorize"){"<b>Logout</b>"}}"""
-			out << "</div></div>"
+			out << "</div>"
 		} else{
-			out << "<div class='login'>"
-			out << "<div>"
 			out << """${link(action:"openSearch", controller:"asistencia"){"<b>Asistencia</b>"}}"""
-			out << """${link(action:"login", controller:"authorize"){"<b>Login</b>"}}"""
-			out << "</div></div>"
+			out << """${link(action:"login", controller:"authorize"){"<b>Login</b>"}}"""			
 		} 		
+		out << "</div>"
 		
 	}
 }
