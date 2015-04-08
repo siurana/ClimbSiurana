@@ -20,7 +20,7 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:asistenciaInstance, action:'showUser']" >
+			<g:form url="[resource:asistenciaInstance, action:'showSocio']" >
 				<fieldset class="form">
 						<label for="perfil">
 							DNI:

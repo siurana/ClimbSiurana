@@ -30,10 +30,6 @@
 					
 						<g:sortableColumn property="arancel" title="${message(code: 'perfil.arancel.label', default: 'Arancel')}" />
 					
-						<g:sortableColumn property="esLibre" title="${message(code: 'perfil.esLibre.label', default: 'Es Libre')}" />
-					
-						<g:sortableColumn property="nroDeClases" title="${message(code: 'perfil.nroDeClases.label', default: 'Nro De Clases')}" />
-					
 					</tr>
 				</thead>
 				<tbody>
@@ -45,10 +41,6 @@
 						<td>${fieldValue(bean: perfilInstance, field: "descripcion")}</td>
 					
 						<td>${fieldValue(bean: perfilInstance, field: "arancel")}</td>
-					
-						<td><g:formatBoolean boolean="${perfilInstance.esLibre}" /></td>
-					
-						<td>${fieldValue(bean: perfilInstance, field: "nroDeClases")}</td>
 					
 					</tr>
 				</g:each>

@@ -29,32 +29,14 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: perfilInstance, field: 'esLibre', 'error')} ">
-	<label for="esLibre">
-		<g:message code="perfil.esLibre.label" default="Es Libre" />
-		
-	</label>
-	<g:checkBox name="esLibre" value="${perfilInstance?.esLibre}" />
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: perfilInstance, field: 'nroDeClases', 'error')} ">
-	<label for="nroDeClases">
-		<g:message code="perfil.nroDeClases.label" default="Nro De Clases" />
-		
-	</label>
-	<g:select name="nroDeClases" from="${perfilInstance.constraints.nroDeClases.inList}" value="${fieldValue(bean: perfilInstance, field: 'nroDeClases')}" valueMessagePrefix="perfil.nroDeClases" noSelection="['': '']"/>
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: perfilInstance, field: 'asistencia', 'error')} ">
-	<label for="asistencia">
-		<g:message code="perfil.asistencia.label" default="Asistencia" />
+<div class="fieldcontain ${hasErrors(bean: perfilInstance, field: 'asistencias', 'error')} ">
+	<label for="asistencias">
+		<g:message code="perfil.asistencias.label" default="Asistencias" />
 		
 	</label>
 	
 <ul class="one-to-many">
-<g:each in="${perfilInstance?.asistencia?}" var="a">
+<g:each in="${perfilInstance?.asistencias?}" var="a">
     <li><g:link controller="asistencia" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></li>
 </g:each>
 <li class="add">
@@ -65,18 +47,18 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: perfilInstance, field: 'perfilesDeUsuario', 'error')} ">
-	<label for="perfilesDeUsuario">
-		<g:message code="perfil.perfilesDeUsuario.label" default="Perfiles De Usuario" />
+<div class="fieldcontain ${hasErrors(bean: perfilInstance, field: 'perfilesDeSocios', 'error')} ">
+	<label for="perfilesDeSocios">
+		<g:message code="perfil.perfilesDeSocios.label" default="Perfiles De Socios" />
 		
 	</label>
 	
 <ul class="one-to-many">
-<g:each in="${perfilInstance?.perfilesDeUsuario?}" var="p">
-    <li><g:link controller="perfilDeUsuario" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
+<g:each in="${perfilInstance?.perfilesDeSocios?}" var="p">
+    <li><g:link controller="perfilDeSocio" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
 </g:each>
 <li class="add">
-<g:link controller="perfilDeUsuario" action="create" params="['perfil.id': perfilInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'perfilDeUsuario.label', default: 'PerfilDeUsuario')])}</g:link>
+<g:link controller="perfilDeSocio" action="create" params="['perfil.id': perfilInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'perfilDeSocio.label', default: 'PerfilDeSocio')])}</g:link>
 </li>
 </ul>
 

@@ -41,6 +41,7 @@ grails.views.default.codec = "html"
 // If unspecified, controllers are prototype scoped.
 grails.controllers.defaultScope = 'singleton'
 
+
 // GSP settings
 grails {
     views {
@@ -95,6 +96,7 @@ environments {
     }
 }
 
+
 // log4j configuration
 log4j.main = {
     // Example of changing the log pattern for the default console appender:
@@ -114,4 +116,17 @@ log4j.main = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'
+}
+
+jqueryDateTimePicker {
+	format {
+		java {
+			datetime = "dd-MM-yyyy HH:mm"
+			date = "dd-MM-yyyy"
+		}
+		picker {
+			date = "'dd-mm-yy'"
+			time = "'H-mm'"
+		}
+	}
 }

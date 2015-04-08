@@ -28,7 +28,7 @@
 					
 						<th><g:message code="asistencia.perfil.label" default="Perfil" /></th>
 					
-						<th><g:message code="asistencia.usuario.label" default="Usuario" /></th>
+						<th><g:message code="asistencia.socio.label" default="Socio" /></th>
 					
 					</tr>
 				</thead>
@@ -40,7 +40,7 @@
 					
 						<td>${fieldValue(bean: asistenciaInstance, field: "perfil")}</td>
 					
-						<td>${fieldValue(bean: asistenciaInstance, field: "usuario")}</td>
+						<td>${fieldValue(bean: asistenciaInstance, field: "socio")}</td>
 					
 					</tr>
 				</g:each>

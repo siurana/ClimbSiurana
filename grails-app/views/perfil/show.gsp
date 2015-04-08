@@ -50,41 +50,23 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${perfilInstance?.esLibre}">
+				<g:if test="${perfilInstance?.asistencias}">
 				<li class="fieldcontain">
-					<span id="esLibre-label" class="property-label"><g:message code="perfil.esLibre.label" default="Es Libre" /></span>
+					<span id="asistencias-label" class="property-label"><g:message code="perfil.asistencias.label" default="Asistencias" /></span>
 					
-						<span class="property-value" aria-labelledby="esLibre-label"><g:formatBoolean boolean="${perfilInstance?.esLibre}" /></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${perfilInstance?.nroDeClases}">
-				<li class="fieldcontain">
-					<span id="nroDeClases-label" class="property-label"><g:message code="perfil.nroDeClases.label" default="Nro De Clases" /></span>
-					
-						<span class="property-value" aria-labelledby="nroDeClases-label"><g:fieldValue bean="${perfilInstance}" field="nroDeClases"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${perfilInstance?.asistencia}">
-				<li class="fieldcontain">
-					<span id="asistencia-label" class="property-label"><g:message code="perfil.asistencia.label" default="Asistencia" /></span>
-					
-						<g:each in="${perfilInstance.asistencia}" var="a">
-						<span class="property-value" aria-labelledby="asistencia-label"><g:link controller="asistencia" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></span>
+						<g:each in="${perfilInstance.asistencias}" var="a">
+						<span class="property-value" aria-labelledby="asistencias-label"><g:link controller="asistencia" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>
 				</g:if>
 			
-				<g:if test="${perfilInstance?.perfilesDeUsuario}">
+				<g:if test="${perfilInstance?.perfilesDeSocios}">
 				<li class="fieldcontain">
-					<span id="perfilesDeUsuario-label" class="property-label"><g:message code="perfil.perfilesDeUsuario.label" default="Perfiles De Usuario" /></span>
+					<span id="perfilesDeSocios-label" class="property-label"><g:message code="perfil.perfilesDeSocios.label" default="Perfiles De Socios" /></span>
 					
-						<g:each in="${perfilInstance.perfilesDeUsuario}" var="p">
-						<span class="property-value" aria-labelledby="perfilesDeUsuario-label"><g:link controller="perfilDeUsuario" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
+						<g:each in="${perfilInstance.perfilesDeSocios}" var="p">
+						<span class="property-value" aria-labelledby="perfilesDeSocios-label"><g:link controller="perfilDeSocio" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>

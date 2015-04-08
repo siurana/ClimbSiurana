@@ -13,76 +13,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet"
 	href="${resource(dir: 'css', file: 'mainStyle.css')}" type="text/css">
-
+<link rel="stylesheet"
+	href="${resource(dir: 'css', file: 'jquery-ui.css')}" type="text/css">
+	
 <r:layoutResources />
 <g:layoutHead />
 </head>
 <body>
+	<g:javascript library="jquery" plugin="jquery" />
+	<g:javascript library="jquery-ui.min"/>
+	<g:javascript library="application" />
 	<header>
-		<pulko:loginControl />
-		<nav>
-			<ul>
-				<li><a href="#">Inicio</a></li>
-				<li><span name="categoria">Categorias</span></li>
-				<li><a href="#">Servicios</a></li>
-				<li><span name="reportes">Reportes</span></li>
-				<li><a href="#">Contacto</a></li>
-			</ul>
-			<div id="categoria">
-				<ul>
-					<li><a href="#">Usuarios</a></li>
-					<li><a href="#">Perfiles</a></li>
-					<li><a href="#">Asistencias</a></li>
-				</ul>
-				<ul>
-					<li><a href="#">Item #1</a></li>
-					<li><a href="#">Item #2</a></li>
-					<li><a href="#">Item #3</a></li>
-					<li><a href="#">Item #4</a></li>
-					<li><a href="#">Item #5</a></li>
-				</ul>
-			</div>
-			<div id="reportes">
-				<ul>
-					<li><a href="#">Reporte #1</a></li>
-					<li><a href="#">Reporte #2</a></li>
-					<li><a href="#">Reporte #3</a></li>
-					<li><a href="#">Reporte #4</a></li>
-				</ul>
-			</div>
-		</nav>
+		<div id="logo"></div>
+		<pulko:loginControl/>
+		<pulko:menu/>
 	</header>
 
 	<div id="wrapper">
 		<g:layoutBody />
-
 		<div id="spinner" class="spinner" style="display: none;">
 			<g:message code="spinner.alt" default="Loading&hellip;" />
-		</div>
-		<g:javascript library="application" />
+		</div>		
 		<fieldset class="footerFill"></fieldset>
 	</div>
-
-	<g:javascript library="jquery" plugin="jquery" />
-	<script>
-		$(function() {
-			if (!$('.buttons').length) {
-				$('.footerFill').show();
-			}
-
-			$('nav > ul > li > span').click(function(e) {
-				var seleccionar = $(this).hasClass('selectedMenu');
-				if ($('nav > ul > li > span').hasClass('selectedMenu')) {
-					$('nav > ul > li > span').removeClass('selectedMenu');
-					$('nav > div').hide();
-				} 
-				if (!seleccionar) {
-					$(this).addClass('selectedMenu');
-					var idSubMenu = '#' + $(this).attr("name");
-					$(idSubMenu).slideToggle();
-				}
-			});
-		});
-	</script>
 </body>
 </html>

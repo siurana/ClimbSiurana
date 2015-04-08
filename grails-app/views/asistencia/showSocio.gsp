@@ -1,29 +1,29 @@
 
-<%@ page import="com.pulko.siurana.core.Usuario"%>
+<%@ page import="com.pulko.siurana.core.Socio"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="layout" content="main">
 <g:set var="entityName"
-	value="${message(code: 'usuario.label', default: 'Usuario')}" />
+	value="${message(code: 'socio.label', default: 'Socio')}" />
 <title><g:message code="default.show.label" args="[entityName]" /></title>
 </head>
 <body>
-	<a href="#show-usuario" class="skip" tabindex="-1"><g:message
+	<a href="#show-socio" class="skip" tabindex="-1"><g:message
 			code="default.link.skip.label" default="Skip to content&hellip;" /></a>
-	<div id="show-usuario" class="content scaffold-show" role="main">
+	<div id="show-socio" class="content scaffold-show" role="main">
 		<div class="nav" role="navigation"></div>
 		<h1>
-			<g:fieldValue bean="${usuarioInstance}" field="apellido" />
+			<g:fieldValue bean="${socioInstance}" field="apellido" />
 			,
-			<g:fieldValue bean="${usuarioInstance}" field="nombre" />
+			<g:fieldValue bean="${socioInstance}" field="nombre" />
 		</h1>
 		<g:if test="${flash.message}">
 			<div class="message" role="status">
 				${flash.message}
 			</div>
 		</g:if>
-		<ol class="property-list usuario">
+		<ol class="property-list socio">
 			<li class="fieldcontain">
 				<h3>
 					<span id="asistencias-label" class="property-label">Asistencias del dia</span>

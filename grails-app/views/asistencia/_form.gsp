@@ -20,12 +20,12 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: asistenciaInstance, field: 'usuario', 'error')} required">
-	<label for="usuario">
-		<g:message code="asistencia.usuario.label" default="Usuario" />
+<div class="fieldcontain ${hasErrors(bean: asistenciaInstance, field: 'socio', 'error')} required">
+	<label for="socio">
+		<g:message code="asistencia.socio.label" default="Socio" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="usuario" name="usuario.id" from="${com.pulko.siurana.core.Usuario.list()}" optionKey="id" required="" value="${asistenciaInstance?.usuario?.id}" class="many-to-one"/>
+	<g:select id="socio" name="socio.id" from="${com.pulko.siurana.core.Socio.list()}" optionKey="id" required="" value="${asistenciaInstance?.socio?.id}" class="many-to-one"/>
 
 </div>
 

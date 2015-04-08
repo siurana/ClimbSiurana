@@ -2,7 +2,7 @@ package com.pulko.siurana.core
 
 class Asistencia {
 	
-	static belongsTo = [usuario: Usuario, perfil: Perfil]
+	static belongsTo = [socio: Socio, perfil: Perfil]
 	
 	Date fechaHora
 	

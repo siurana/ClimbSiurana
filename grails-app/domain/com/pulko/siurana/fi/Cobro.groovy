@@ -1,9 +1,10 @@
 package com.pulko.siurana.fi
+import com.pulko.siurana.core.PerfilDeSocio;
 import com.pulko.siurana.core.Usuario;
 
-class Pago {
+class Cobro {
 	
-	static belongsTo = [socio: Usuario, responsable: Usuario]
+	static belongsTo = [perfilDeSocio: PerfilDeSocio, responsable: Usuario]
 	Date fechaHora
 	Double monto
 	String descripcion

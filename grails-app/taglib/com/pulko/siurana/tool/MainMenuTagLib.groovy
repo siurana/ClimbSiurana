@@ -5,97 +5,96 @@ import grails.artefact.Artefact;
 class MainMenuTagLib {
 	static namespace = "pulko"
 	static encodeAsForTags = [tagName: [taglib:'raw']]
-
+	
+	def subMenuContent = []
+	def subMenuContentAux = ""
+	
 	def menu = { attrs, body ->
 		if(session.usuario){
-			out << "<div class='menu'>"
-			out << "	<span>"
-			out << "		<ul id='nav'>"
-			out << "			<li><a href='/Siurana/'>Inicio</a></li>"
-			out << "			<li><a href='#'>Gestores</a>"
-			out << "				<div class='subs'>"
-			out << "					<div>"
-			out << "						<ul>"
-			out << "							<li><h3>Principales</h3>"
-			out << "								<ul>"
-			out << "									<li><a href='/Siurana/usuario/index'>Usuario</a></li>"
-			out << "									<li><a href='/Siurana/rol/index'>Roles</a></li>"
-			out << "									<li><a href='/Siurana/perfil/index'>Perfiles</a></li>"
-			out << "									<li><a href='/Siurana/asistencia/index'>Asistencias</a></li>"
-			out << "								</ul></li>"
-			out << "							<li><h3>Utiles</h3>"
-			out << "								<ul>"
-			out << "									<li><a href='#'>Link 6</a></li>"
-			out << "									<li><a href='#'>Link 7</a></li>"
-			out << "									<li><a href='#'>Link 8</a></li>"
-			out << "								</ul></li>"
-			out << "						</ul>"
-			out << "					</div>"
-			out << "				</div></li>"
-			out << "				<li><a href='#'>Tienda</a>"
-			out << "				<div class='subs'>"
-			out << "					<div>"
-			out << "						<ul>"
-			out << "							<li><h3>Palestra</h3>"
-			out << "								<ul>"
-			out << "									<li><a href='#'>Ropa</a></li>"
-			out << "									<li><a href='#'>Magnecio</a></li>"
-			out << "								</ul></li>"
-			out << "							<li><h3>Terceros</h3>"
-			out << "								<ul>"
-			out << "									<li><a href='#'>Mercaderias</a></li>"
-			out << "								</ul></li>"
-			out << "						</ul>"
-			out << "					</div>"
-			out << "				</div></li>"
-			out << "			<li><a href='#'>Reportes</a>"
-			out << "				<div class='subs'>"
-			out << "					<div class='wrp2'>"
-			out << "						<ul>"
-			out << "							<li><h3>Usuarios</h3>"
-			out << "								<ul>"
-			out << "									<li><a href='#'>Link 1</a></li>"
-			out << "									<li><a href='#'>Link 2</a></li>"
-			out << "									<li><a href='#'>Link 3</a></li>"
-			out << "									<li><a href='#'>Link 4</a></li>"
-			out << "									<li><a href='#'>Link 5</a></li>"
-			out << "								</ul></li>"
-			out << "							<li><h3>Asistencias</h3>"
-			out << "								<ul>"
-			out << "									<li><a href='#'>Link 6</a></li>"
-			out << "									<li><a href='#'>Link 7</a></li>"
-			out << "									<li><a href='#'>Link 8</a></li>"
-			out << "									<li><a href='#'>Link 9</a></li>"
-			out << "									<li><a href='#'>Link 10</a></li>"
-			out << "								</ul></li>"
-			out << "						</ul>"
-			out << "						<p class='sep'></p>"
-			out << "						<ul>"
-			out << "							<li><h3>Cobros</h3>"
-			out << "								<ul>"
-			out << "									<li><a href='#'>Link 11</a></li>"
-			out << "									<li><a href='#'>Link 12</a></li>"
-			out << "									<li><a href='#'>Link 13</a></li>"
-			out << "								</ul></li>"
-			out << "							<li><h3>Gastos</h3>"
-			out << "								<ul>"
-			out << "									<li><a href='#'>Link 14</a></li>"
-			out << "									<li><a href='#'>Link 15</a></li>"
-			out << "									<li><a href='#'>Link 16</a></li>"
-			out << ""
-			out << "								</ul></li>"
-			out << "							<li><h3>Estado</h3>"
-			out << "								<ul>"
-			out << "									<li><a href='#'>Link 17</a></li>"
-			out << "									<li><a href='#'>Link 18</a></li>"
-			out << "									<li><a href='#'>Link 19</a></li>"
-			out << "								</ul></li>"
-			out << "						</ul>"
-			out << "					</div>"
-			out << "				</div></li>					"
-			out << "		</ul>"
-			out << "	</span>"
-			out << "</div>"
+			buildingMenu()
 		}
+	}
+	
+	def buildingMenu(){
+		startMenu()
+		startMainMenu()
+		buildingItemMenu([tittle: "Inicio", url: "/"])
+		buildingItemMenu([tittle: "Administracion", submenu: [[
+			[tittle: "Usuarios", action: "index", controller:"usuario"],
+			[tittle: "Socios", action: "index", controller:"socio"],
+			[tittle: "Perfiles", action: "index", controller:"perfil"]
+			],[
+			[tittle: "Roles", action: "index", controller:"rol"],
+			[tittle: "Asistencias", action: "index", controller:"asistencia"]
+			]]])
+		buildingItemMenu([tittle: "Cobros", action: "index", controller:"cobro"])
+		endMainMenu()
+		subMenuContent.each { submenucontent ->
+			out << submenucontent
+		}
+		endMenu()
+	}
+
+	def startMenu() {
+		out << "<nav>"
+	}
+	def startMainMenu() {
+		out << "<ul>"
+	}
+	
+	def endMainMenu() {
+		out << "</ul>"
+	}
+	
+	def endMenu() {
+		out << "</nav>"
+	}
+	
+	def startSubMenu() {
+		def idSubMenu = subMenuContent.size()
+		return "<div id='submenu_${idSubMenu}'>"
+	}
+	
+	def endSubMenu() {
+		return "</div>"
+	}
+	
+	def buildingItemMenu(item){
+		out << "<li>"
+		if(!item.submenu){
+			if(!item.url){
+				out << """${link(action:item.action, controller:item.controller){item.tittle}}"""
+			} else{
+				out << """${link(url: createLink(uri: item.url)){item.tittle}}"""
+			}
+		}else{
+			def idSubMenu = subMenuContent.size()
+			out << "<span name='submenu_${idSubMenu}'>${item.tittle}</span>"
+			buildingSubMenu(item.submenu)
+		}
+		out << "</li>"
+	}
+	
+	def buildingSubMenu(submenusrow){
+		subMenuContentAux = startSubMenu()
+		submenusrow.each {submenus ->
+			buildingSubMenuRow(submenus)
+		}
+		subMenuContentAux += endSubMenu()
+		subMenuContent << subMenuContentAux
+	}
+	
+	def buildingSubMenuRow(submenus){
+		subMenuContentAux += "<ul>"
+		submenus.each { submenu ->
+			subMenuContentAux += "<li>"
+			if(!submenu.url){
+				subMenuContentAux += """${link(action:submenu.action, controller:submenu.controller){submenu.tittle}}"""
+			} else{
+				subMenuContentAux += """${link(url: createLink(uri: item.url)){submenu.tittle}}"""
+			}
+			subMenuContentAux += "</li>"
+		}
+		subMenuContentAux += "</ul>"
 	}
 }

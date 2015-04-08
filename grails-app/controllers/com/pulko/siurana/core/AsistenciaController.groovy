@@ -12,9 +12,9 @@ class AsistenciaController {
 
 	def openSearch(){}
 
-	def showUser(){
-		Usuario usuario=Usuario.findByNroDocumento(params.searchText)
-		if(!usuario){
+	def showSocio(){
+		Socio socio=Socio.findByNroDocumento(params.searchText)
+		if(!socio){
 			request.withFormat {
 				form multipartForm {
 					flash.message = "No se encontro socio con DNI: "+ params.searchText
@@ -27,24 +27,25 @@ class AsistenciaController {
 			def asistenciasDeHoy = [] as Set
 			boolean tieneAlgunaAsistenciaParaRegistrarElDiaDeHoy=false
 			
-			if(usuario.perfilesDeUsuario.size()==0){
+			if(socio.perfilesDeSocio.size()==0){
 				request.withFormat {
 					form multipartForm {
-						flash.message = "El socio ${usuario} perfieles cargados"
+						flash.message = "El socio ${socio} no tiene perfieles cargados"
 						redirect action: "openSearch", method: "GET"
 					}
 					'*'{ render status: NOT_FOUND }
 				}
+				return
 			}
 			
-			usuario.asistencias.each {
+			socio.asistencias.each {
 				if(it.isToday()){
-					asistenciasDeHoy << [perfil: it.getPerfil(), idSocio: usuario.id, registrada: Boolean.TRUE]
+					asistenciasDeHoy << [perfil: it.getPerfil(), idSocio: socio.id, registrada: Boolean.TRUE]
 				}
 			}
-			usuario.perfilesDeUsuario.each {
-				if(!asistenciasDeHoy.contains([perfil: it.getPerfil(), idSocio: usuario.id, registrada: Boolean.TRUE])){
-					asistenciasDeHoy << [perfil: it.getPerfil(), idSocio: usuario.id, registrada: Boolean.FALSE]
+			socio.perfilesDeSocio.each {
+				if(!asistenciasDeHoy.contains([perfil: it.getPerfil(), idSocio: socio.id, registrada: Boolean.TRUE])){
+					asistenciasDeHoy << [perfil: it.getPerfil(), idSocio: socio.id, registrada: Boolean.FALSE]
 					tieneAlgunaAsistenciaParaRegistrarElDiaDeHoy = true
 				}
 			}
@@ -52,7 +53,7 @@ class AsistenciaController {
 			if(!tieneAlgunaAsistenciaParaRegistrarElDiaDeHoy){
 				request.withFormat {
 					form multipartForm {
-						flash.message = "El socio ${usuario} ya ha registrado su/s asistencia/s para hoy"
+						flash.message = "El socio ${socio} ya ha registrado su/s asistencia/s para hoy"
 						redirect action: "openSearch", method: "GET"
 					}
 					'*'{ render status: NOT_FOUND }
@@ -63,13 +64,13 @@ class AsistenciaController {
 				if(asistenciasDeHoy.size()==1){
 					request.withFormat {
 						form multipartForm {
-							redirect action: "guardarAsistencia", method: "GET", params:[idSocio:usuario.id, idPerfil: asistenciasDeHoy[0].perfil.id]
+							redirect action: "guardarAsistencia", method: "GET", params:[idSocio:socio.id, idPerfil: asistenciasDeHoy[0].perfil.id]
 						}
 						'*'{ render status: OK }
 					}
 				} else {
 
-					respond usuario, model: [asistenciasDeHoy: asistenciasDeHoy]
+					respond socio, model: [asistenciasDeHoy: asistenciasDeHoy]
 				}
 			}
 		}
@@ -77,11 +78,11 @@ class AsistenciaController {
 
 	@Transactional
 	def guardarAsistencia(){
-		Usuario usuario = Usuario.get(params.idSocio)
+		Socio socio = Socio.get(params.idSocio)
 		Perfil perfil = Perfil.get( params.idPerfil)
-		Asistencia asistencia=new Asistencia(fechaHora: new Date(), usuario:usuario, perfil:perfil)
+		Asistencia asistencia=new Asistencia(fechaHora: new Date(), socio:socio, perfil:perfil)
 		asistencia.save flush:true
-		flash.message = "La asistencia de ${usuario} para ${perfil} fue registrata con exito!!"
+		flash.message = "La asistencia de ${socio} para ${perfil} fue registrata con exito!!"
 		forward  action: "openSearch", controller: "asistencia"
 	}
 

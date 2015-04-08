@@ -8,9 +8,9 @@ class AuthorizeController {
 	 
     
     def login = {    
-        if (session.usuario) {
-            redirect(uri:"/")                    
-        }
+		if (session.usuario) {
+			redirect(uri:"/")
+		}
     }
   
     def authenticate = {

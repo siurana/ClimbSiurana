@@ -41,11 +41,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${asistenciaInstance?.usuario}">
+				<g:if test="${asistenciaInstance?.socio}">
 				<li class="fieldcontain">
-					<span id="usuario-label" class="property-label"><g:message code="asistencia.usuario.label" default="Usuario" /></span>
+					<span id="socio-label" class="property-label"><g:message code="asistencia.socio.label" default="Socio" /></span>
 					
-						<span class="property-value" aria-labelledby="usuario-label"><g:link controller="usuario" action="show" id="${asistenciaInstance?.usuario?.id}">${asistenciaInstance?.usuario?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="socio-label"><g:link controller="socio" action="show" id="${asistenciaInstance?.socio?.id}">${asistenciaInstance?.socio?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>
