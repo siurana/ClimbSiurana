@@ -54,7 +54,7 @@
 				<li class="fieldcontain">
 					<span id="fechaDeNacimiento-label" class="property-label"><g:message code="socio.fechaDeNacimiento.label" default="Fecha De Nacimiento" /></span>
 					
-						<span class="property-value" aria-labelledby="fechaDeNacimiento-label"><g:formatDate date="${socioInstance?.fechaDeNacimiento}" /></span>
+						<span class="property-value" aria-labelledby="fechaDeNacimiento-label"><g:formatDate format="dd/MM/yyyy" date="${socioInstance?.fechaDeNacimiento}" /></span>
 					
 				</li>
 				</g:if>
@@ -120,7 +120,7 @@
 					<span id="perfilesDeSocio-label" class="property-label"><g:message code="socio.perfilesDeSocio.label" default="Perfiles De Socio" /></span>
 					
 						<g:each in="${socioInstance.perfilesDeSocio}" var="p">
-						<span class="property-value" aria-labelledby="perfilesDeSocio-label"><g:link controller="perfilDeSocio" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="perfilesDeSocio-label">${p?.perfil?.encodeAsHTML()}</span>
 						</g:each>
 					
 				</li>
@@ -131,6 +131,8 @@
 				<fieldset class="buttons">
 					<g:link class="edit" action="edit" resource="${socioInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+					<g:link action="createPerfilDeSocio" params="['socio.id': socioInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'perfilDeSocio.label', default: 'Perfil De Socio')])}</g:link>
+					<g:link controller="asistencia" action="create" params="['socio.id': socioInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'asistencia.label', default: 'Asistencia')])}</g:link>
 				</fieldset>
 			</g:form>
 		</div>

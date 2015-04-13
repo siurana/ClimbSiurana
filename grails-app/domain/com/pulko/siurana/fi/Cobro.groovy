@@ -14,4 +14,5 @@ class Cobro {
 		monto blank: false
 		descripcion nullable: true
     }
+	
 }

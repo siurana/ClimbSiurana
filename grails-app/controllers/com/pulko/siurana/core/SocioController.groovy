@@ -22,6 +22,10 @@ class SocioController {
     def create() {
         respond new Socio(params)
     }
+	
+	def createPerfilDeSocio() {        		
+		respond new PerfilDeSocio(params)
+	}
 
     @Transactional
     def save(Socio socioInstance) {
@@ -45,6 +49,30 @@ class SocioController {
             '*' { respond socioInstance, [status: CREATED] }
         }
     }
+	
+	@Transactional
+	def savePerfilDeSocio(PerfilDeSocio perfilDeSocioInstance) {
+		if (perfilDeSocioInstance == null) {
+			notFound()
+			return
+		}
+
+		if (perfilDeSocioInstance.hasErrors()) {
+			respond perfilDeSocioInstance.errors, view:'createPerfilDeSocio'
+			return
+		}
+
+		perfilDeSocioInstance.save flush:true
+
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.created.message', args: [message(code: 'perfilDeSocio.label', default: 'PerfilDeSocio'), perfilDeSocioInstance.socio.id])
+				redirect perfilDeSocioInstance.socio
+			}
+			'*' { respond perfilDeSocioInstance, [status: CREATED] }
+		}
+	}
+
 
     def edit(Socio socioInstance) {
         respond socioInstance

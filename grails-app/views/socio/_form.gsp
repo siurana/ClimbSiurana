@@ -93,9 +93,6 @@
 <g:each in="${socioInstance?.asistencias?}" var="a">
     <li><g:link controller="asistencia" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></li>
 </g:each>
-<li class="add">
-<g:link controller="asistencia" action="create" params="['socio.id': socioInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'asistencia.label', default: 'Asistencia')])}</g:link>
-</li>
 </ul>
 
 
@@ -111,9 +108,6 @@
 <g:each in="${socioInstance?.perfilesDeSocio?}" var="p">
     <li><g:link controller="perfilDeSocio" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
 </g:each>
-<li class="add">
-<g:link controller="perfilDeSocio" action="create" params="['socio.id': socioInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'perfilDeSocio.label', default: 'PerfilDeSocio')])}</g:link>
-</li>
 </ul>
 
 

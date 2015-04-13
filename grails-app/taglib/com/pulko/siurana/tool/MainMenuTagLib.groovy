@@ -25,9 +25,15 @@ class MainMenuTagLib {
 			[tittle: "Perfiles", action: "index", controller:"perfil"]
 			],[
 			[tittle: "Roles", action: "index", controller:"rol"],
-			[tittle: "Asistencias", action: "index", controller:"asistencia"]
+			[tittle: "Asistencias", action: "index", controller:"asistencia"],
+			[tittle: "Perfil de socio", action: "index", controller:"perfilDeSocio"]
 			]]])
 		buildingItemMenu([tittle: "Cobros", action: "index", controller:"cobro"])
+		buildingItemMenu([tittle: "Reportes", submenu: [[
+			[tittle: "Cobros por mes", action: "index", controller:"reporteCobrosPorMes"],
+			[tittle: "Listado de socios morosos", action: "sociosMorosos", controller:"reportes"],
+			[tittle: "Resumen Socios", action: "resulmenSocios", controller:"reportes"]
+			]]])
 		endMainMenu()
 		subMenuContent.each { submenucontent ->
 			out << submenucontent
