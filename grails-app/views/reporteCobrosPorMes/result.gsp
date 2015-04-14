@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta name="layout" content="main">
-<g:set var="entityName" value="Reporte cobros por mes" />
-<title><g:message code="default.list.label" args="[entityName]" /></title>
+<g:set var="tituloPage" value="Reporte cobros por mes" />
+<title>${tituloPage}</title>
 </head>
 <body>
 	<a href="#list-perfilDeSocio" class="skip" tabindex="-1"><g:message
@@ -17,7 +17,7 @@
 	</div>
 	<div id="list-cobro" class="content scaffold-list" role="main">
 		<h1>
-			<g:message code="default.list.label" args="[entityName]" />
+			${tituloPage}
 		</h1>
 		<g:if test="${flash.message}">
 			<div class="message" role="status">

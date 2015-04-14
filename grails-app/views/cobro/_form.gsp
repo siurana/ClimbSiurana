@@ -41,6 +41,7 @@
 		<g:message code="cobro.responsable.label" default="Responsable" />		
 	</label>
 	<span >${session?.usuario?.encodeAsHTML()}</span>
+	<g:hiddenField name="responsable.id" value="${session.usuario.id}"/>
 
 </div>
 

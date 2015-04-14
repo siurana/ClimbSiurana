@@ -3,6 +3,7 @@ package com.pulko.siurana.fi
 
 
 import static org.springframework.http.HttpStatus.*
+import com.pulko.siurana.core.Usuario
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
@@ -30,7 +31,6 @@ class CobroController {
             return
         }
 
-		cobroInstance.responsable=session.usuario
         if (cobroInstance.hasErrors()) {
             respond cobroInstance.errors, view:'create'
             return
