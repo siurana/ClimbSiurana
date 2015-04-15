@@ -34,6 +34,10 @@ class MainMenuTagLib {
 			[tittle: "Listado de socios morosos", action: "sociosMorosos", controller:"reportes"],
 			[tittle: "Resumen Socios", action: "resulmenSocios", controller:"reportes"]
 			]]])
+		buildingItemMenu([tittle: "Herramientas", submenu: [[
+			[tittle: "Carga masiva", action: "index", controller:"reporteCobrosPorMes"],
+			[tittle: "Carga masiva peques", action: "resulmenSocios", controller:"reportes"]
+			]]])
 		endMainMenu()
 		subMenuContent.each { submenucontent ->
 			out << submenucontent
