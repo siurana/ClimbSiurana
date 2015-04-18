@@ -20,7 +20,7 @@ class Usuario {
 		apellido blank: false
 		fechaDeAlta blank: false, nullable: true, display: false, format: 'dd/MM/yyyy'
 		fechaDeModificacion blank: false, nullable: true, display: false, format: 'dd/MM/yyyy'
-		deleted black: false, display: false
+		deleted black: true, nullable: true, display: false
 		socio blank: true, nullable: true
 	}
 

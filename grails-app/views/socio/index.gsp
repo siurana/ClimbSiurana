@@ -28,11 +28,11 @@
 					
 						<g:sortableColumn property="apellido" title="${message(code: 'socio.apellido.label', default: 'Apellido')}" />
 					
-						<g:sortableColumn property="nroDocumento" title="${message(code: 'socio.nroDocumento.label', default: 'Nro Documento')}" />
-					
-						<g:sortableColumn property="fechaDeNacimiento" title="${message(code: 'socio.fechaDeNacimiento.label', default: 'Fecha De Nacimiento')}" />
+						<g:sortableColumn property="nroDocumento" title="${message(code: 'socio.nroDocumento.label', default: 'DNI')}" />					
 					
 						<g:sortableColumn property="telefono" title="${message(code: 'socio.telefono.label', default: 'Telefono')}" />
+						
+						<g:sortableColumn property="telefono" title="${message(code: 'socio.celular.label', default: 'Celular')}" />
 					
 						<g:sortableColumn property="email" title="${message(code: 'socio.email.label', default: 'Email')}" />
 					
@@ -46,11 +46,11 @@
 					
 						<td>${fieldValue(bean: socioInstance, field: "apellido")}</td>
 					
-						<td>${fieldValue(bean: socioInstance, field: "nroDocumento")}</td>
-					
-						<td><g:formatDate date="${socioInstance.fechaDeNacimiento}" /></td>
+						<td>${fieldValue(bean: socioInstance, field: "dNI")}</td>
 					
 						<td>${fieldValue(bean: socioInstance, field: "telefono")}</td>
+						
+						<td>${fieldValue(bean: socioInstance, field: "celular")}</td>
 					
 						<td>${fieldValue(bean: socioInstance, field: "email")}</td>
 					

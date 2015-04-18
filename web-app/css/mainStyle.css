@@ -39,10 +39,12 @@ overflow-y: scroll;
 
 #logo {
     background-image:url(../images/logo.jpg);
+    background-size: 80px 80px;
 	background-repeat:no-repeat;
 	background-position:center top;
-	min-height: 160px;
-	min-width: 160px;
+	
+	min-height: 80px;
+	min-width: 80px;
 	position: absolute;
 	float: left;
 	margin-top: 20px;
@@ -93,6 +95,22 @@ h1 {
     margin: 0.8em 0 0.3em 0;
     font-style: normal;
     font-variant: inherit;
+}
+
+h3 {
+    color: #003333;
+    background-color: rgba(51,51,51,0.1) !important;
+    font-weight: bold;
+    margin: 2em 2em 1.3em 2em;
+    font-style: normal;
+    font-variant: inherit;
+    border-bottom: 1px solid #CCCCCC;    
+    border-top: 1px solid #CCCCCC;
+    border-left: 1px solid #CCCCCC;
+    padding: 0.25em 0.25em 0.25em 1.25em;
+        -moz-border-radius: 0.7em;
+    -webkit-border-radius: 0.7em;
+    border-radius: 0.7em;
 }
 
 ul {
@@ -188,8 +206,8 @@ select[multiple] {
 }
 
 textarea {
-    width: 250px;
-    height: 150px;
+    width: 450px;
+    height: 60px;
     overflow: auto; /* IE always renders vertical scrollbar without this */
     vertical-align: top;
 }
@@ -580,6 +598,7 @@ a.skip {
 	    color: #333333;
     	margin: 0 auto;
 		margin-top: 110px !important;
+		margin-bottom: 110px !important;
     overflow-x: hidden; /* prevents box-shadow causing a horizontal scrollbar in firefox when viewport < 960px wide */
     -moz-box-shadow: 0 0 1em 0.2em rgba(0,0,0,0.8);
     -webkit-box-shadow: 0 0 1em 0.2em rgba(0,0,0,0.8);

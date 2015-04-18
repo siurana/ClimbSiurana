@@ -54,9 +54,9 @@ class BootStrap {
 			perfil1.save(flush: true)
 		}
 
-		def perfil2 = Perfil.findByNombre('Palestra niños')
+		def perfil2 = Perfil.findByNombre('Palestra menores')
 		if (!perfil2) {
-			perfil2 = new Perfil(nombre: 'Palestra niños', descripcion: 'Clases dirigidas a ni±os entre 6 y 11 años', arancel: 300, esLibre: false,	nroDeClases: 8)
+			perfil2 = new Perfil(nombre: 'Palestra menores', descripcion: 'Clases dirigidas a menores entre 6 y 11', arancel: 300, esLibre: false,	nroDeClases: 8)
 			perfil2.save(flush: true)
 		}
 

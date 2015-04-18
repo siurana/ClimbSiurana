@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'perfilDeSocio.label', default: 'PerfilDeSocio')}" />
-		<title><g:message code="default.create.label" args="[entityName]" /></title>
+		<g:set var="entityName" value="${message(code: 'perfilDeSocio.label', default: 'Asociar Modalidad')}" />
+		<title>${entityName}</title>
 	</head>
 	<body>
 		<a href="#create-perfilDeSocio" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -13,7 +13,7 @@
 			</ul>
 		</div>
 		<div id="create-perfilDeSocio" class="content scaffold-create" role="main">
-			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
+			<h1>${entityName}</h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
@@ -46,7 +46,7 @@
 
 				</fieldset>
 				<fieldset class="buttons">
-					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+					<g:submitButton name="create" class="save" value="Asociar" />
 				</fieldset>
 			</g:form>
 		</div>

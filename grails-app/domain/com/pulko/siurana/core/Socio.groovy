@@ -52,7 +52,7 @@ class Socio {
 		apellido blank: false
 		dNI blank: true, nullable: true, size: 8..10
 		fechaDeNacimiento blank: false, nullable: true, format: 'dd/MM/yyyy'
-		domicilio blank: true, nullable: true, widget: 'textarea', range: 0..200
+		domicilio blank: true, nullable: true, widget: 'textarea', maxSize: 200
 		email email:true, blank: true, nullable: true		
 		telefono blank: true, nullable: true
 		celular blank: true, nullable: true
@@ -70,7 +70,7 @@ class Socio {
 		nombreDelPadre blank: true, nullable: true
 		apellidoDelPadre blank: true, nullable: true
 		dNIDelPadre blank: true, nullable: true, size: 8..10
-		domicilioDelPadre blank: true, nullable: true, widget: 'textarea', range: 0..200
+		domicilioDelPadre blank: true, nullable: true, widget: 'textarea', maxSize: 200
 		emailDelPadre email:true, blank: true, nullable: true
 		telefonoDelPadre blank: true, nullable: true
 		celularDelPadre blank: true, nullable: true
@@ -79,13 +79,13 @@ class Socio {
 		nombreDeLaMadre blank: true, nullable: true
 		apellidoDeLaMadre blank: true, nullable: true
 		dNIDeLaMadre blank: true, nullable: true, size: 8..10
-		domicilioDeLaMadre blank: true, nullable: true, widget: 'textarea', range: 0..200
+		domicilioDeLaMadre blank: true, nullable: true, widget: 'textarea', maxSize: 200
 		emailDeLaMadre email:true, blank: true, nullable: true
 		telefonoDeLaMadre blank: true, nullable: true
 		celularDeLaMadre blank: true, nullable: true
 		
 		fechaDeIngreso blank: true, nullable: true, format: 'dd/MM/yyyy'
-		observaciones blank: true, nullable: true, widget: 'textarea', range: 0..600
+		observaciones blank: true, nullable: true, widget: 'textarea', maxSize: 200
 		
 		activo blank: false
 		fechaDeAlta blank: false, nullable: true, display: false, format: 'dd/MM/yyyy'
