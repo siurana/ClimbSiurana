@@ -213,7 +213,7 @@
 					
 				</li>
 				</g:if>
-			
+				<h3>Datos de la Madre</h3>
 				<g:if test="${socioInstance?.nombreDeLaMadre}">
 				<li class="fieldcontain">
 					<span id="nombreDeLaMadre-label" class="property-label"><g:message code="socio.nombreDeLaMadre.label" default="Nombre" /></span>

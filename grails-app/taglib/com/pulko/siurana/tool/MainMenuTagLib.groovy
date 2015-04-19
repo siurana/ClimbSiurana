@@ -36,7 +36,7 @@ class MainMenuTagLib {
 			]]])
 		buildingItemMenu([tittle: "Herramientas", submenu: [[
 			[tittle: "Carga masiva", action: "upload", controller:"cargarDeSociosDesdeExcel"],
-			[tittle: "Carga masiva menores", action: "resulmenSocios", controller:"reportes"]
+			[tittle: "Carga masiva menores", action: "upload", controller:"cargarDeSociosMenoresDesdeExcel"]
 			]]])
 		endMainMenu()
 		subMenuContent.each { submenucontent ->
