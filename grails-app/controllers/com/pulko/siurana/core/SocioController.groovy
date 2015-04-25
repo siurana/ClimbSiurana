@@ -11,8 +11,27 @@ class SocioController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Socio.list(params), model:[socioInstanceCount: Socio.count()]
+		params.max = Math.min(max ?: 10, 100)
+		def query
+			
+				if(!params.nombre && !params.apellido){
+					query = Socio.where {
+						activo==params.soloLosActivos
+					}
+				} else {
+					if(!params.nombre){
+						params.nombre = "-"
+					}
+					if(!params.apellido){
+						params.apellido = "-"
+					}
+					query = Socio.where {
+						(nombre =~ "%${params.nombre}%" || apellido =~ "%${params.apellido}%") && activo==params.soloLosActivos
+					}
+				} 
+			
+			def lista = query.list(params)			
+			respond lista, model:[socioInstanceCount: lista.size()]
     }
 
     def show(Socio socioInstance) {

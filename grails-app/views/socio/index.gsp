@@ -20,6 +20,22 @@
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
+			<g:form url="[resource:socioInstance, action:'index']" method="GET" >
+				<fieldset class="filtrarPor">
+					<legend>Filtrar por</legend>
+					<div class="fieldcontain">
+						<label><g:message code="socio.nombre.label" default="Nombre" /></label>
+						<g:textField name="nombre" value="${socioInstance?.nombre}"/>
+						<label><g:message code="socio.apellido.label" default="Apellido" /></label>
+						<g:textField name="apellido" value="${socioInstance?.apellido}"/><br>
+						<label>Solo los activos</label>
+						<g:checkBox name="soloLosActivos" value="true"/>
+					</div>
+					<fieldset>
+					<g:submitButton name="create" class="save" value="Filtrar" />
+				</fieldset>
+				</fieldset>				
+			</g:form>
 			<table>
 			<thead>
 					<tr>

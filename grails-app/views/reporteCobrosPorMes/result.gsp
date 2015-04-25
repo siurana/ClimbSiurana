@@ -66,10 +66,10 @@
 									${fieldValue(bean: cobroInstance, field: "monto")}
 								</td>
 								<td>
-									${cobroInstance?.perfilDeSocio?.socio?.encodeAsHTML()}
+									${cobroInstance?.socio?.encodeAsHTML()}
 								</td>
 								<td>
-									${cobroInstance?.perfilDeSocio?.perfil?.encodeAsHTML()}
+									${cobroInstance?.perfil?.encodeAsHTML()}
 								</td>
 								<td>
 									${fieldValue(bean: cobroInstance, field: "responsable")}

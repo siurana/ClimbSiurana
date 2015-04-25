@@ -1,10 +1,12 @@
 package com.pulko.siurana.core
 
 import java.util.Date;
+import com.pulko.siurana.fi.Cobro
+import grails.converters.JSON
 
 class Socio {
 
-    static hasMany = [modalidades: PerfilDeSocio, asistencias: Asistencia]
+    static hasMany = [modalidades: PerfilDeSocio, asistencias: Asistencia, cobros: Cobro]
 	
 	String nombre
 	String apellido
@@ -110,6 +112,11 @@ class Socio {
 	
 	@Override String toString() {
 		return getApellido() +", "+ getNombre()
+	}
+	
+	def modalidadesAsJson(){
+		def converter = modalidades.perfil.collect{[id: it.id, arancel:it.arancel, descripcion: it.descripcion]} as JSON;
+		return converter
 	}
 	
 }

@@ -497,7 +497,7 @@ tr:hover {
 
 /* ACTION BUTTONS */
 
-.buttons, .footerFill{
+.buttons, .footerFill, .filtrarPor fieldset{
     background-color: rgba(31,31,31,0.8);
     overflow: hidden;
     padding: 0.3em 0.3em 0.3em 2.3em;
@@ -507,6 +507,8 @@ tr:hover {
 	min-height: 30px;
 	width: 100%;
 }
+
+
 
 .footerFill{
 	display: none;
@@ -541,7 +543,7 @@ a.skip {
 	}
 #login a:link,#login a:visited,#login a:hover, 
 .buttons a:link,.buttons a:visited,.buttons a:hover,
-.buttons input[type=submit], .nav a{
+.buttons input[type=submit], .nav a, .filtrarPor fieldset input{
 	color:rgba(255,153,51,1) !important;
 	margin-right: 20px; 
 	background-color:transparent !important;;
@@ -558,7 +560,7 @@ a.skip {
 #login a:hover,#login a:active,
 .buttons a:hover,.buttons a:active,
 .buttons input:hover,.buttons input:active,
-.nav a:focus, .nav a:hover{
+.nav a:focus, .nav a:hover, .filtrarPor fieldset input:hover{
     outline: none; /* prevents outline in webkit on active links but retains it for tab focus */
     border: 2px solid rgba(255,204,51,0.8);
     color: rgba(255,204,51,1) !important;
@@ -770,3 +772,63 @@ nav > div > ul > li > a:hover{
             -webkit-box-shadow: 0px 0px 0.5em rgba(152,255,112,0.8);
             box-shadow: 0px 0px 0.5em rgba(152,255,112,0.8);
     }
+.filtrarPor {
+	
+	border: 1px solid #eeeeee;
+	-moz-box-shadow: 0px 0px 0.5em #433434;
+     -webkit-box-shadow: 0px 0px 0.5em #433434;
+     box-shadow: 0px 0px 0.5em #433434;
+     -moz-border-radius: 20px;
+     -webkit-border-radius: 20px;
+     border-radius: 20px;
+     padding: 0px 0px 0px 0px !important;
+     margin-bottom: 20px;
+     margin-left: 50px;
+}
+
+.filtrarPor legend {
+	border: 1px solid #000000;
+	margin-left: 30px;
+	background-color: rgba(240,240,255,1);
+	padding-left: 20px;
+	padding-right: 20px;
+	-moz-box-shadow: 0px 0px 0.5em #433434;
+    -webkit-box-shadow: 0px 0px 0.5em #433434;
+     box-shadow: 0px 0px 0.5em #433434;
+     -moz-border-radius: 40px;
+     -webkit-border-radius: 40px;
+     border-radius: 40px;      
+     font-weight: bold;      
+}
+
+.filtrarPor div{
+	padding: 0px 0px 15px 40px;
+}
+
+.filtrarPor div input[type=text]{
+	margin-right: 20px;
+}
+
+.filtrarPor div input[type=checkbox]{
+	margin-top: 20px;
+	background-color: #fcfcfc;
+    border: 1px solid #cccccc;
+    font-size: 1em;
+    padding: 0.2em 0.4em;
+}
+
+.filtrarPor div label{	
+	width: 130px !important;
+}
+
+
+.filtrarPor fieldset{
+	width: auto !important;
+	 box-shadow: 0px 0px 0.5em #433434;
+     -moz-border-radius: 40px;
+     -webkit-border-radius: 40px;
+     border-radius:  0px 0px 20px 20px; 
+     text-align: right;
+     padding-right: 50px !important
+	
+}

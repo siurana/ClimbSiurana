@@ -5,7 +5,6 @@ class PerfilDeSocio {
 
     Socio socio
     Perfil perfil
-	static hasMany = [cobros:Cobro]
 	
     static PerfilDeSocio link(socio, perfil) {
         def m = PerfilDeSocio.findBySocioAndPerfil(socio, perfil)

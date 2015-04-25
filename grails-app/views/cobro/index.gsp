@@ -44,9 +44,9 @@
 					
 						<td>${fieldValue(bean: cobroInstance, field: "monto")}</td>
 					
-						<td>${cobroInstance?.perfilDeSocio?.socio?.encodeAsHTML()}</td>
+						<td>${cobroInstance?.socio?.encodeAsHTML()}</td>
 					
-						<td>${cobroInstance?.perfilDeSocio?.perfil?.encodeAsHTML()}</td>
+						<td>${cobroInstance?.perfil?.encodeAsHTML()}</td>
 					
 						<td>${fieldValue(bean: cobroInstance, field: "responsable")}</td>
 					

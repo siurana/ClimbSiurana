@@ -23,20 +23,20 @@
 			</g:if>
 			<ol class="property-list cobro">
 			
-			<g:if test="${cobroInstance?.perfilDeSocio}">
+			<g:if test="${cobroInstance?.socio}">
 				<li class="fieldcontain">
 					<span id="perfilDeSocio-label" class="property-label"><g:message code="cobro.perfilDeSocio.label" default="Socio" /></span>
 					
-						<span class="property-value" aria-labelledby="perfilDeSocio-label">${cobroInstance?.perfilDeSocio?.socio?.encodeAsHTML()}</span>
+						<span class="property-value" aria-labelledby="perfilDeSocio-label">${cobroInstance?.socio?.encodeAsHTML()}</span>
 					
 				</li>
 				</g:if>
 				
-				<g:if test="${cobroInstance?.perfilDeSocio}">
+				<g:if test="${cobroInstance?.perfil}">
 				<li class="fieldcontain">
 					<span id="perfilDeSocio-label" class="property-label"><g:message code="cobro.perfilDeSocio.label" default="Perfil" /></span>
 					
-						<span class="property-value" aria-labelledby="perfilDeSocio-label">${cobroInstance?.perfilDeSocio?.perfil?.encodeAsHTML()}</span>
+						<span class="property-value" aria-labelledby="perfilDeSocio-label">${cobroInstance?.perfil?.encodeAsHTML()}</span>
 					
 				</li>
 				</g:if>

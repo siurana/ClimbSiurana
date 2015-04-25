@@ -13,7 +13,7 @@ class AsistenciaController {
 	def openSearch(){}
 
 	def showSocio(){
-		Socio socio=Socio.findByNroDocumento(params.searchText)
+		Socio socio=Socio.findByDNI(params.searchText)
 		if(!socio){
 			request.withFormat {
 				form multipartForm {
@@ -27,7 +27,7 @@ class AsistenciaController {
 			def asistenciasDeHoy = [] as Set
 			boolean tieneAlgunaAsistenciaParaRegistrarElDiaDeHoy=false
 			
-			if(socio.perfilesDeSocio.size()==0){
+			if(socio.modalidades.size()==0){
 				request.withFormat {
 					form multipartForm {
 						flash.message = "El socio ${socio} no tiene perfieles cargados"
@@ -43,7 +43,7 @@ class AsistenciaController {
 					asistenciasDeHoy << [perfil: it.getPerfil(), idSocio: socio.id, registrada: Boolean.TRUE]
 				}
 			}
-			socio.perfilesDeSocio.each {
+			socio.modalidades.each {
 				if(!asistenciasDeHoy.contains([perfil: it.getPerfil(), idSocio: socio.id, registrada: Boolean.TRUE])){
 					asistenciasDeHoy << [perfil: it.getPerfil(), idSocio: socio.id, registrada: Boolean.FALSE]
 					tieneAlgunaAsistenciaParaRegistrarElDiaDeHoy = true
