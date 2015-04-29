@@ -3,6 +3,11 @@
 # web application files
 /web-app/WEB-INF/classes
 
+/bin
+/bin/.settings/org.eclipse.wst.common.project.facet.core.xml
+.project
+.classpath.rej
+
 # default HSQL database files for production mode
 /prodDb.*
 
