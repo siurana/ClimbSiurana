@@ -20,13 +20,47 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:asistenciaInstance, action:'showSocio']" >
+			
+			<g:if test="${asistenciaInstance?.fechaHora}">
+			<ol class="property-list asistencia">
+			
+				<g:if test="${asistenciaInstance?.fechaHora}">
+				<li class="fieldcontain">
+					<span id="fechaHora-label" class="property-label"><g:message code="asistencia.fechaHora.label" default="Fecha Hora" /></span>
+						<span class="property-value" aria-labelledby="fechaHora-label"><g:formatDate format="dd/MM/yyyy - HH:mm" date="${asistenciaInstance?.fechaHora}" />hs</span>
+				</li>
+				</g:if>
+			
+				<g:if test="${asistenciaInstance?.perfil}">
+				<li class="fieldcontain">
+					<span id="perfil-label" class="property-label"><g:message code="asistencia.perfil.label" default="Perfil" /></span>
+						<span class="property-value" aria-labelledby="perfil-label">${asistenciaInstance?.perfil?.encodeAsHTML()}</span>
+				</li>
+				</g:if>
+			
+				<g:if test="${asistenciaInstance?.socio}">
+				<li class="fieldcontain">
+					<span id="socio-label" class="property-label"><g:message code="asistencia.socio.label" default="Socio" /></span>
+						<span class="property-value" aria-labelledby="socio-label">${asistenciaInstance?.socio?.encodeAsHTML()}</span>
+				</li>
+				</g:if>
+				
+				<g:if test="${asistenciaInstance?.socio}">
+				<li class="fieldcontain">
+					<span id="socio-label" class="property-label">Asistencias en el mes</span>
+						<span class="property-value" aria-labelledby="socio-label">${asistenciasDelMes}</span>
+				</li>
+				</g:if>
+			<br>
+			</ol>
+			</g:if>
+			
+			<g:form url="[resource:asistenciaInstance, action:'showSocio']" method="POST" >
 				<fieldset class="form">
 						<label for="perfil">
-							DNI:
-							<span class="required-indicator">*</span>
+							DNI:							
 						</label>
-						<g:textField name="searchText" required="" value=""/>
+						<g:textField name="searchText" value=""/>
 				</fieldset>
 				<fieldset class="buttons">
 					<g:submitButton name="create" class="save" value="buscar" />

@@ -1,7 +1,7 @@
 package com.pulko.siurana.core
 
 
-
+import groovy.time.TimeCategory
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -18,7 +18,7 @@ class AsistenciaController {
 			request.withFormat {
 				form multipartForm {
 					flash.message = "No se encontro socio con DNI: "+ params.searchText
-					redirect action: "openSearch", method: "GET"
+					redirect action: "openSearch", method: "POST"
 				}
 				'*'{ render status: NOT_FOUND }
 			}
@@ -31,7 +31,7 @@ class AsistenciaController {
 				request.withFormat {
 					form multipartForm {
 						flash.message = "El socio ${socio} no tiene perfieles cargados"
-						redirect action: "openSearch", method: "GET"
+						redirect action: "openSearch", method: "POST"
 					}
 					'*'{ render status: NOT_FOUND }
 				}
@@ -54,7 +54,7 @@ class AsistenciaController {
 				request.withFormat {
 					form multipartForm {
 						flash.message = "El socio ${socio} ya ha registrado su/s asistencia/s para hoy"
-						redirect action: "openSearch", method: "GET"
+						redirect action: "openSearch", method: "POST"
 					}
 					'*'{ render status: NOT_FOUND }
 				}
@@ -64,7 +64,7 @@ class AsistenciaController {
 				if(asistenciasDeHoy.size()==1){
 					request.withFormat {
 						form multipartForm {
-							redirect action: "guardarAsistencia", method: "GET", params:[idSocio:socio.id, idPerfil: asistenciasDeHoy[0].perfil.id]
+							redirect action: "guardarAsistencia", method: "POST", model:[idSocio:socio.id, idPerfil: asistenciasDeHoy[0].perfil.id]
 						}
 						'*'{ render status: OK }
 					}
@@ -78,12 +78,30 @@ class AsistenciaController {
 
 	@Transactional
 	def guardarAsistencia(){
-		Socio socio = Socio.get(params.idSocio)
-		Perfil perfil = Perfil.get( params.idPerfil)
-		Asistencia asistencia=new Asistencia(fechaHora: new Date(), socio:socio, perfil:perfil)
-		asistencia.save flush:true
-		flash.message = "La asistencia de ${socio} para ${perfil} fue registrata con exito!!"
-		forward  action: "openSearch", controller: "asistencia"
+		Socio socioInstance = Socio.get(params.idSocio)
+		Perfil perfilInstance = Perfil.get( params.idPerfil)
+		Asistencia asistenciaInstance=new Asistencia(fechaHora: new Date(), socio:socioInstance, perfil:perfilInstance)
+		asistenciaInstance.save flush:true
+		flash.message = "La asistencia fue registrata con exito!!"
+		
+		int asistenciasDelMes = 0
+		def hoy = new Date()
+		def fromDate = hoy - 1
+		def toDate
+		
+		use(TimeCategory) {
+			toDate = hoy + 1.month
+		}
+		println fromDate
+		println toDate
+		
+		socioInstance.asistencias.each {
+			if((it.fechaHora > fromDate) && (it.fechaHora < toDate) && (it.perfil.id==perfilInstance.id)){
+				asistenciasDelMes++
+			}
+		}
+		
+		forward  action: "openSearch", method: "POST", model:[asistenciasDelMes:asistenciasDelMes,asistenciaInstance:asistenciaInstance]
 	}
 
 	def index(Integer max) {

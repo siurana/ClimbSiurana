@@ -23,18 +23,17 @@
 				${flash.message}
 			</div>
 		</g:if>
-		<ol class="property-list socio">
-			<li class="fieldcontain">
-				<h3>
-					<span id="asistencias-label" class="property-label">Asistencias del dia</span>
-				</h3>
-			</li>
+		
+		<fieldset class="asistencia">
+				<legend><span id="asistencias-label" class="property-label">Asistencias del dia: <g:formatDate format="dd / MM / yyyy" date="${new Date()}" /></span></legend>
+		<ol class="property-list socio">	
 			<g:each in="${asistenciasDeHoy}" var="a">
 				<li class="fieldcontain"> 
 					<pulko:registrarAsistencia perfil="${a?.perfil?.encodeAsHTML()}" idSocio="${a?.idSocio}" isRegistrada="${a?.registrada}" idPerfil="${a?.perfil?.id}"/>
 					</li>
 			</g:each>
 		</ol>
+		</fieldset>
 	</div>
 </body>
 </html>

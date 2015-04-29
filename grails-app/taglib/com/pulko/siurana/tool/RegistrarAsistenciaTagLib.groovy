@@ -15,11 +15,11 @@ class RegistrarAsistenciaTagLib {
 		
 		if(!isRegistrada){
 			def backgroundImage="style='background-image: url(${createLinkTo(dir: "images", file: "hand.png")}); '"
-			def bodyButton = "<div ${backgroundImage}><h3>${perfil}</h3></div>"
+			def bodyButton = "<div ${backgroundImage}><b>${perfil}</b></div>"
 			out << """${link(class: "mainOptionAsistencia", action: "guardarAsistencia", controller: "asistencia", params: [idSocio:idSocio,idPerfil:idPerfil]){bodyButton}}"""
 		}   else {
 			def backgroundImage="style='background-image: url(${createLinkTo(dir: "images", file: "ready.png")}); '"
-			def bodyButton = "<span class='mainOptionAsistenciaReady'><div ${backgroundImage}><h3>${perfil}</h3></div></span>"
+			def bodyButton = "<div class='mainOptionAsistenciaReady'><div ${backgroundImage}><b>${perfil}</b></div></div>"
 			out << bodyButton
 		}
 	}
