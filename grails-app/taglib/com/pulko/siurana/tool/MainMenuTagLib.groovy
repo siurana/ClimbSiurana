@@ -31,8 +31,7 @@ class MainMenuTagLib {
 		buildingItemMenu([tittle: "Cobros", action: "index", controller:"cobro"])
 		buildingItemMenu([tittle: "Reportes", submenu: [[
 			[tittle: "Cobros por mes", action: "index", controller:"reporteCobrosPorMes"],
-			[tittle: "Listado de socios morosos", action: "sociosMorosos", controller:"reportes"],
-			[tittle: "Resumen Socios", action: "resulmenSocios", controller:"reportes"]
+			[tittle: "Listado de socios morosos", action: "index", controller:"reporteSociosMorosos"],
 			]]])
 		buildingItemMenu([tittle: "Herramientas", submenu: [[
 			[tittle: "Carga masiva", action: "upload", controller:"cargarDeSociosDesdeExcel"],

@@ -497,7 +497,7 @@ tr:hover {
 
 /* ACTION BUTTONS */
 
-.buttons, .footerFill, .filtrarPor fieldset{
+.buttons, .footerFill, .filtrarPor fieldset, .asistencia fieldset{
     background-color: rgba(31,31,31,0.8);
     overflow: hidden;
     padding: 0.3em 0.3em 0.3em 2.3em;
@@ -772,7 +772,7 @@ nav > div > ul > li > a:hover{
             -webkit-box-shadow: 0px 0px 0.5em rgba(152,255,112,0.8);
             box-shadow: 0px 0px 0.5em rgba(152,255,112,0.8);
     }
-.filtrarPor {
+.filtrarPor, .asistencia {
 	
 	border: 1px solid #eeeeee;
 	-moz-box-shadow: 0px 0px 0.5em #433434;
@@ -786,7 +786,7 @@ nav > div > ul > li > a:hover{
      margin-left: 50px;
 }
 
-.filtrarPor legend {
+.filtrarPor legend, .asistencia legend {
 	border: 1px solid #000000;
 	margin-left: 30px;
 	background-color: rgba(240,240,255,1);

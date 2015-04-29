@@ -19,7 +19,6 @@
 </head>
 <body>
 	<g:javascript library="jquery" plugin="jquery" />
-	<g:javascript library="jquery-ui.min"/>
 	<g:javascript library="application" />
 	<header>
 		<div id="logo"></div>
