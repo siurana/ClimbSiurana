@@ -10,7 +10,8 @@ class AsistenciaController {
 
 	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-	def openSearch(){}
+	def openSearch(){
+	}
 
 	def showSocio(){
 		Socio socio=Socio.findByDNI(params.searchText)
@@ -92,16 +93,16 @@ class AsistenciaController {
 		use(TimeCategory) {
 			toDate = hoy + 1.month
 		}
-		println fromDate
-		println toDate
 		
 		socioInstance.asistencias.each {
 			if((it.fechaHora > fromDate) && (it.fechaHora < toDate) && (it.perfil.id==perfilInstance.id)){
 				asistenciasDelMes++
 			}
 		}
+		flash.asistenciasDelMes=asistenciasDelMes
+		flash.asistenciaInstance=asistenciaInstance
 		
-		forward  action: "openSearch", method: "POST", model:[asistenciasDelMes:asistenciasDelMes,asistenciaInstance:asistenciaInstance]
+		redirect  action: "openSearch", method: "POST"
 	}
 
 	def index(Integer max) {

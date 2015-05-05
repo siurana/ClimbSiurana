@@ -11,44 +11,44 @@
 		<div class="nav" role="navigation"></div>
 			<h1>Buscar Socio para asistencia</h1>
 			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
+			<div class="message hideMe" role="status">${flash.message}</div>
 			</g:if>
 			<g:hasErrors bean="${asistenciaInstance}">
 			<ul class="errors" role="alert">
 				<g:eachError bean="${asistenciaInstance}" var="error">
-				<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+				<li> <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
 			
-			<g:if test="${asistenciaInstance?.fechaHora}">
-			<ol class="property-list asistencia">
+			<g:if test="${flash.asistenciaInstance?.fechaHora}">
+			<ol class="property-list asistencia hideMe">
 			
-				<g:if test="${asistenciaInstance?.fechaHora}">
+				<g:if test="${flash.asistenciaInstance?.fechaHora}">
 				<li class="fieldcontain">
 					<span id="fechaHora-label" class="property-label"><g:message code="asistencia.fechaHora.label" default="Fecha Hora" /></span>
-						<span class="property-value" aria-labelledby="fechaHora-label"><g:formatDate format="dd/MM/yyyy - HH:mm" date="${asistenciaInstance?.fechaHora}" />hs</span>
+						<span class="property-value" aria-labelledby="fechaHora-label"><g:formatDate format="dd/MM/yyyy - HH:mm" date="${flash.asistenciaInstance?.fechaHora}" />hs</span>
 				</li>
 				</g:if>
 			
-				<g:if test="${asistenciaInstance?.perfil}">
+				<g:if test="${flash.asistenciaInstance?.perfil}">
 				<li class="fieldcontain">
 					<span id="perfil-label" class="property-label"><g:message code="asistencia.perfil.label" default="Perfil" /></span>
-						<span class="property-value" aria-labelledby="perfil-label">${asistenciaInstance?.perfil?.encodeAsHTML()}</span>
+						<span class="property-value" aria-labelledby="perfil-label">${flash.asistenciaInstance?.perfil?.encodeAsHTML()}</span>
 				</li>
 				</g:if>
 			
-				<g:if test="${asistenciaInstance?.socio}">
+				<g:if test="${flash.asistenciaInstance?.socio}">
 				<li class="fieldcontain">
 					<span id="socio-label" class="property-label"><g:message code="asistencia.socio.label" default="Socio" /></span>
-						<span class="property-value" aria-labelledby="socio-label">${asistenciaInstance?.socio?.encodeAsHTML()}</span>
+						<span class="property-value" aria-labelledby="socio-label">${flash.asistenciaInstance?.socio?.encodeAsHTML()}</span>
 				</li>
 				</g:if>
 				
-				<g:if test="${asistenciaInstance?.socio}">
+				<g:if test="${flash.asistenciaInstance?.socio}">
 				<li class="fieldcontain">
 					<span id="socio-label" class="property-label">Asistencias en el mes</span>
-						<span class="property-value" aria-labelledby="socio-label">${asistenciasDelMes}</span>
+						<span class="property-value" aria-labelledby="socio-label">${flash.asistenciasDelMes}</span>
 				</li>
 				</g:if>
 			<br>
@@ -67,5 +67,13 @@
 				</fieldset>
 			</g:form>
 		</div>
+		<script type="text/javascript">
+        $(function() {            
+        	setTimeout(function() {
+        		$(".hideMe").hide("slow");
+            }, 5000);
+           
+        });
+    </script>
 	</body>
 </html>
