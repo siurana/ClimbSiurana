@@ -1,9 +1,10 @@
 package com.pulko.siurana.fi
+import grails.converters.JSON
 
 class Rubro {
 	
 	static hasMany = [subRubros:SubRubro]
-	String Nombre
+	String nombre
 	String descripcion
 	
     static constraints = {
@@ -15,4 +16,8 @@ class Rubro {
 		return getNombre()
 	}
 	
+	def subRubrosAsJson(){
+		def converter = subRubros.collect{[id: it.id, nombre: it.nombre]} as JSON;
+		return converter
+	}
 }

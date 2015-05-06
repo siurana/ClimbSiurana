@@ -28,10 +28,16 @@ class MainMenuTagLib {
 			[tittle: "Asistencias", action: "index", controller:"asistencia"],
 			[tittle: "Perfil de socio", action: "index", controller:"perfilDeSocio"]
 			]]])
-		buildingItemMenu([tittle: "Cobros", action: "index", controller:"cobro"])
+		buildingItemMenu([tittle: "Finanzas", submenu: [[
+			[tittle: "Cobros Pale", action: "index", controller:"cobro"],
+			[tittle: "Movimientos Contables", action: "index", controller:"movimientoContable"]
+			],[
+			[tittle: "Rubros", action: "index", controller:"rubro"],
+			[tittle: "Sub Rubros", action: "index", controller:"subRubro"]
+			]]])
 		buildingItemMenu([tittle: "Reportes", submenu: [[
 			[tittle: "Cobros por mes", action: "index", controller:"reporteCobrosPorMes"],
-			[tittle: "Listado de socios morosos", action: "index", controller:"reporteSociosMorosos"],
+			[tittle: "Listado de socios morosos", action: "index", controller:"reporteSociosMorosos"]
 			]]])
 		buildingItemMenu([tittle: "Herramientas", submenu: [[
 			[tittle: "Carga masiva", action: "upload", controller:"cargarDeSociosDesdeExcel"],

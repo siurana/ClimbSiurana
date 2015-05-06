@@ -3,7 +3,7 @@ package com.pulko.siurana.fi
 class SubRubro {
 	
 	static belongsTo = [rubro:Rubro]
-	String Nombre
+	String nombre
 	String descripcion
 	String tipo
 	
