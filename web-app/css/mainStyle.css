@@ -363,7 +363,7 @@ tr>td:last-child, tr>th:last-child {
     padding-right: 1.25em;
 }
 
-td, th {
+td, th, tfoot td {
     line-height: 1.5em;
     padding: 0.2em 0.3em;
     text-align: left;
@@ -382,8 +382,30 @@ th {
     padding: 0.2em 0.6em;
 }
 
-thead th {
+tfoot td {
+    background-color: #408080;
+    background-image: -moz-linear-gradient(top, #408080, #111111);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #408080), color-stop(1, #111111));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = '#408080', EndColorStr = '#111111');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#408080', EndColorStr='#111111')";
+    color: YELLOW;
+    font-weight: bold;
+    line-height: 1.7em;
+    padding: 0.2em 0.6em;
+    height: 20px;    
+	font-size: 16px;
+}
+
+thead th, tfoot td {
     white-space: nowrap;
+}
+
+tfoot td:FIRST-CHILD{
+	text-align: center !important;
+}
+
+tfoot td:last-child{
+	color: #00ff00;
 }
 
 th a {

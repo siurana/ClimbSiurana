@@ -15,8 +15,13 @@ class SocioController {
 		def query
 			
 				if(!params.nombre && !params.apellido){
-					query = Socio.where {
-						activo==params.soloLosActivos
+					if(params.soloLosActivos==null && params.soloLosActivos==true){
+						query = Socio.where {
+							activo==true
+						}
+					} else {
+						query = Socio.where {
+						}
 					}
 				} else {
 					if(!params.nombre){
