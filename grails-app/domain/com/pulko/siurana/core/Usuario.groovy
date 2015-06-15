@@ -25,7 +25,11 @@ class Usuario {
 	}
 
 	def isSuperUser(){
-		return rol != null ? rol.getNombre() == "ROLE_ADMIN" : false
+		return rol != null ? rol.getNombre() == "ROLE_SUPER_USER" : false
+	}
+	
+	def isAdminUser(){
+		return rol != null ? rol.getNombre() == "ROLE_ADMIN_USER" : false
 	}
 	
 	def hasSocio(){

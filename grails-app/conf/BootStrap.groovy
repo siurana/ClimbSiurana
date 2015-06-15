@@ -9,7 +9,7 @@ class BootStrap {
 	def init = { servletContext ->
 		initRolesAndUsers()
 		initPerfiles()
-		initRubros()
+		//initRubros()
 	}
 
 		def destroy = {

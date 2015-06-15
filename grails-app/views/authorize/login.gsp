@@ -12,7 +12,7 @@
 				${flash.message}
 			</div>
 		</g:if>
-		<g:form action="authenticate" method="post">
+		<g:form autocomplete="off" action="authenticate" method="post">
 			<fieldset class="form">
 				<div  style="margin-top: 50px;"
 					class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'userName', 'error')} required">

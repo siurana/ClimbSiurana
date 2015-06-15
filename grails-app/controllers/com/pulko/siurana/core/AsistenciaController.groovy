@@ -1,6 +1,6 @@
 package com.pulko.siurana.core
 
-
+import com.pulko.siurana.fi.Cobro
 import groovy.time.TimeCategory
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -39,9 +39,11 @@ class AsistenciaController {
 				return
 			}
 			
-			socio.asistencias.each {
-				if(it.isToday()){
-					asistenciasDeHoy << [perfil: it.getPerfil(), idSocio: socio.id, registrada: Boolean.TRUE]
+			if(Asistencia.count()>0){
+				socio.asistencias.each {
+					if(it.isToday()){
+						asistenciasDeHoy << [perfil: it.getPerfil(), idSocio: socio.id, registrada: Boolean.TRUE]
+					}
 				}
 			}
 			socio.modalidades.each {
@@ -65,7 +67,7 @@ class AsistenciaController {
 				if(asistenciasDeHoy.size()==1){
 					request.withFormat {
 						form multipartForm {
-							redirect action: "guardarAsistencia", method: "POST", model:[idSocio:socio.id, idPerfil: asistenciasDeHoy[0].perfil.id]
+							redirect action: "guardarAsistencia", method: "POST", params:[idSocio:socio.id, idPerfil: asistenciasDeHoy[0].perfil.id]
 						}
 						'*'{ render status: OK }
 					}
@@ -83,6 +85,7 @@ class AsistenciaController {
 		Perfil perfilInstance = Perfil.get( params.idPerfil)
 		Asistencia asistenciaInstance=new Asistencia(fechaHora: new Date(), socio:socioInstance, perfil:perfilInstance)
 		asistenciaInstance.save flush:true
+		
 		flash.message = "La asistencia fue registrata con exito!!"
 		
 		int asistenciasDelMes = 0
@@ -94,20 +97,61 @@ class AsistenciaController {
 			toDate = hoy + 1.month
 		}
 		
-		socioInstance.asistencias.each {
-			if((it.fechaHora > fromDate) && (it.fechaHora < toDate) && (it.perfil.id==perfilInstance.id)){
-				asistenciasDelMes++
+		if(Asistencia.count()>0){
+			socioInstance.asistencias.each {
+				if((it.fechaHora > fromDate) && (it.fechaHora < toDate) && (it.perfil.id==perfilInstance.id)){
+					asistenciasDelMes++
+				}
 			}
+			
+		} else {
+			asistenciasDelMes++
 		}
+		
+		def lastCobro=socioInstance.getCobros(
+			)
+		if(lastCobro){
+			flash.lastCobroMessage= lastCobro.last().fechaHora.format("dd MMM yyyy")
+		} else {
+			flash.lastCobroMessage="No se han registrados pagos aun!".encodeAsHTML()
+		}
+	
 		flash.asistenciasDelMes=asistenciasDelMes
 		flash.asistenciaInstance=asistenciaInstance
+		
 		
 		redirect  action: "openSearch", method: "POST"
 	}
 
 	def index(Integer max) {
-		params.max = Math.min(max ?: 10, 100)
-		respond Asistencia.list(params), model:[asistenciaInstanceCount: Asistencia.count()]
+		def query
+
+		if(params.fecha){
+			String nombre =	params.nombre
+			if(!params.nombre){
+				params.nombre = "-"
+			}
+			String apellido = params.apellido
+			if(!params.apellido){
+				params.apellido = "-"
+			}
+			if(params.nombre == "-" && params.apellido == "-"){
+				query = Asistencia.where {
+					month(fechaHora)==params.fecha_month && year(fechaHora)==params.fecha_year
+				}
+			} else {
+				query = Asistencia.where {
+					(month(fechaHora)==params.fecha_month && year(fechaHora)==params.fecha_year && (socio.nombre =~ "%${params.nombre}%" || socio.apellido =~ "%${params.apellido}%"))
+				}
+			}
+
+			params.sort= "fechaHora"
+			params.order= "asc"
+			def lista = query.list(params)
+			params.nombre = nombre
+			params.apellido = apellido
+			respond lista, [nombre: nombre, apellido: apellido, fecha: params.fecha]
+		}
 	}
 
 	def show(Asistencia asistenciaInstance) {
@@ -119,6 +163,38 @@ class AsistenciaController {
 		asistenciaInstance.fechaHora = new Date()
 		respond asistenciaInstance
 	}
+	
+	def createFromSocio() {
+		Asistencia asistenciaInstance = new Asistencia(params)
+		asistenciaInstance.fechaHora = new Date()
+		respond asistenciaInstance
+	}
+	
+	@Transactional
+	def saveFromSocio(Asistencia asistenciaInstance) {
+		if (asistenciaInstance == null) {
+			notFound()
+			return
+		}
+
+		
+		if (asistenciaInstance.hasErrors()) {
+			respond asistenciaInstance.errors, view:'create'
+			return
+		}
+
+		asistenciaInstance.save flush:true
+			
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.created.message', args: [message(code: 'asistencia.label', default: 'Asistencia'), asistenciaInstance.socio.id
+				])
+				redirect action:"show", controller:"socio", id:asistenciaInstance.socio.id, method:"POST"
+			}
+			'*' { respond asistenciaInstance, [status: CREATED] }
+		}
+	}
+
 
 	@Transactional
 	def save(Asistencia asistenciaInstance) {
@@ -127,7 +203,7 @@ class AsistenciaController {
 			return
 		}
 
-		asistenciaInstance.fechaHora = new Date()
+		
 		if (asistenciaInstance.hasErrors()) {
 			respond asistenciaInstance.errors, view:'create'
 			return

@@ -25,7 +25,7 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:perfilDeSocioInstance, action:'save']" >
+			<g:form autocomplete="off" url="[resource:perfilDeSocioInstance, action:'save']" >
 				<fieldset class="form">
 					<g:render template="form"/>
 				</fieldset>

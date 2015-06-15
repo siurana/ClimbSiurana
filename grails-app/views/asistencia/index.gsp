@@ -20,35 +20,45 @@
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
+				<g:form autocomplete="off" url="[resource:socioInstance, action:'index']" method="GET" >
+			<fieldset class="filtrarPor">
+				<legend>Filtrar por</legend>
+				<div class="fieldcontain">
+					<label><g:message code="socio.nombre.label"
+							default="Nombre" /></label>
+					<g:textField name="nombre" value="${params.nombre}" />
+					<label><g:message code="socio.apellido.label"
+							default="Apellido" /></label>
+					<g:textField name="apellido" value="${params.apellido}" />
+					<br> 
+					<label for="perfil"> Seleccione un periodo
+					</label>
+					<g:datePicker name="fecha" format="MM/yyyy" precision="month"  value="${!params.fecha?new Date():params.fecha}" default="none" noSelection="['': '']" />
+				</div>
+				<fieldset>
+					<g:submitButton name="create" class="save" value="Filtrar" />
+				</fieldset>
+			</fieldset>
+		</g:form>
 			<table>
 			<thead>
 					<tr>
-					
-						<g:sortableColumn property="fechaHora" title="${message(code: 'asistencia.fechaHora.label', default: 'Fecha Hora')}" />
-					
-						<th><g:message code="asistencia.perfil.label" default="Perfil" /></th>
-					
 						<th><g:message code="asistencia.socio.label" default="Socio" /></th>
-					
+						<th><g:message code="asistencia.fechaHora.label" default= "Fecha Hora"/></th>					
+						<th><g:message code="asistencia.perfil.label" default="Perfil" /></th>
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${asistenciaInstanceList}" status="i" var="asistenciaInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
-						<td><g:link action="show" id="${asistenciaInstance.id}">${fieldValue(bean: asistenciaInstance, field: "fechaHora")}</g:link></td>
-					
-						<td>${fieldValue(bean: asistenciaInstance, field: "perfil")}</td>
-					
-						<td>${fieldValue(bean: asistenciaInstance, field: "socio")}</td>
-					
+						<td><g:link action="show" id="${asistenciaInstance.id}">${fieldValue(bean: asistenciaInstance, field: "socio")}</g:link></td>
+						<td>${fieldValue(bean: asistenciaInstance, field: "fechaHora")}</td>					
+						<td>${fieldValue(bean: asistenciaInstance, field: "perfil")}</td>					
 					</tr>
 				</g:each>
 				</tbody>
 			</table>
-			<div class="pagination">
-				<g:paginate total="${asistenciaInstanceCount ?: 0}" />
-			</div>
+	
 		</div>
 	</body>
 </html>

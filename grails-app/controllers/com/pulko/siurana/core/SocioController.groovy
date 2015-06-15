@@ -11,11 +11,13 @@ class SocioController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-		params.max = Math.min(max ?: 10, 100)
+		
 		def query
-			
+		String nombre =	params.nombre
+		String apellido = params.apellido
+		
 				if(!params.nombre && !params.apellido){
-					if(params.soloLosActivos==null && params.soloLosActivos==true){
+					if(params.soloLosActivos!=null && params.soloLosActivos=='true'){
 						query = Socio.where {
 							activo==true
 						}
@@ -24,9 +26,11 @@ class SocioController {
 						}
 					}
 				} else {
+					
 					if(!params.nombre){
 						params.nombre = "-"
 					}
+					
 					if(!params.apellido){
 						params.apellido = "-"
 					}
@@ -34,9 +38,13 @@ class SocioController {
 						(nombre =~ "%${params.nombre}%" || apellido =~ "%${params.apellido}%") && activo==params.soloLosActivos
 					}
 				} 
-			
-			def lista = query.list(params)			
-			respond lista, model:[socioInstanceCount: lista.size()]
+						
+			params.sort= "apellido"
+			params.order= "asc"			
+			def lista = query.list(params)
+			params.nombre = nombre
+			params.apellido = apellido
+			respond lista, [nombre: nombre, apellido: apellido]
     }
 
     def show(Socio socioInstance) {
@@ -143,6 +151,28 @@ class SocioController {
             '*'{ render status: NO_CONTENT }
         }
     }
+	
+	@Transactional
+	def removeModalidad(PerfilDeSocio perfilDeSocioInstance) {
+
+		if (perfilDeSocioInstance == null) {
+			notFound()
+			return
+		}
+		
+		def idSocio = perfilDeSocioInstance.socio.id
+
+		perfilDeSocioInstance.delete flush:true
+
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.deleted.message', args: [message(code: 'PerfilDeSocio.label', default: 'Modalidad'), idSocio])
+				redirect action:"show", method:"POST"
+			}
+			'*'{ render status: NO_CONTENT }
+		}
+	}
+	
 
     protected void notFound() {
         request.withFormat {

@@ -20,14 +20,14 @@
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<g:form url="[resource:socioInstance, action:'index']" method="GET" >
+			<g:form autocomplete="off" url="[resource:socioInstance, action:'index']" method="GET" >
 				<fieldset class="filtrarPor">
 					<legend>Filtrar por</legend>
 					<div class="fieldcontain">
 						<label><g:message code="socio.nombre.label" default="Nombre" /></label>
-						<g:textField name="nombre" value="${socioInstance?.nombre}"/>
+						<g:textField name="nombre" value="${params?.nombre}"/>
 						<label><g:message code="socio.apellido.label" default="Apellido" /></label>
-						<g:textField name="apellido" value="${socioInstance?.apellido}"/><br>
+						<g:textField name="apellido" value="${params?.apellido}"/><br>
 						<label>Solo los activos</label>
 						<g:checkBox name="soloLosActivos" value="true"/>
 					</div>
@@ -40,17 +40,13 @@
 			<thead>
 					<tr>
 					
-						<g:sortableColumn property="nombre" title="${message(code: 'socio.nombre.label', default: 'Nombre')}" />
-					
-						<g:sortableColumn property="apellido" title="${message(code: 'socio.apellido.label', default: 'Apellido')}" />
-					
-						<g:sortableColumn property="nroDocumento" title="${message(code: 'socio.nroDocumento.label', default: 'DNI')}" />					
-					
-						<g:sortableColumn property="telefono" title="${message(code: 'socio.telefono.label', default: 'Telefono')}" />
-						
-						<g:sortableColumn property="telefono" title="${message(code: 'socio.celular.label', default: 'Celular')}" />
-					
-						<g:sortableColumn property="email" title="${message(code: 'socio.email.label', default: 'Email')}" />
+						<th>Apellido</th>
+						<th>Nombre</th>
+					<th>DNI</th>				
+					<th>Telefono</th>
+					<th>Celular</th>
+					<th>Email</th>
+					<th>Activo</th>
 					
 					</tr>
 				</thead>
@@ -58,9 +54,9 @@
 				<g:each in="${socioInstanceList}" status="i" var="socioInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${socioInstance.id}">${fieldValue(bean: socioInstance, field: "nombre")}</g:link></td>
+					<td><g:link action="show" id="${socioInstance.id}">${fieldValue(bean: socioInstance, field: "apellido")}</g:link></td>
 					
-						<td>${fieldValue(bean: socioInstance, field: "apellido")}</td>
+					<td><g:link action="show" id="${socioInstance.id}">${fieldValue(bean: socioInstance, field: "nombre")}</g:link></td>	
 					
 						<td>${fieldValue(bean: socioInstance, field: "dNI")}</td>
 					
@@ -70,13 +66,11 @@
 					
 						<td>${fieldValue(bean: socioInstance, field: "email")}</td>
 					
+						<td><g:checkBox name="activo" disabled="true" value="${socioInstance?.activo}" /></td>
 					</tr>
 				</g:each>
 				</tbody>
-			</table>
-			<div class="pagination">
-				<g:paginate total="${socioInstanceCount ?: 0}" />
-			</div>
+			</table>			
 		</div>
 	</body>
 </html>

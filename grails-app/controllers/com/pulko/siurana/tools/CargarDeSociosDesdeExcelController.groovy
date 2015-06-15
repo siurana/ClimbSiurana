@@ -42,32 +42,35 @@ class CargarDeSociosDesdeExcelController {
 			def map = [:]
 			map.nombre = sheet.getCell(1, row).contents
 			map.apellido = sheet.getCell(0, row).contents
-			map.dNI = sheet.getCell(2, row).contents
-			if(sheet.getCell(3, row).contents){
-				map.fechaDeNacimiento = Date.parse( 'dd/MM/yyyy', sheet.getCell(3, row).contents)
-			}
-			map.domicilio = sheet.getCell(4, row).contents
-			map.email = sheet.getCell(5, row).contents
-			map.telefono = sheet.getCell(6, row).contents
-			map.celular = sheet.getCell(7, row).contents
-			map.sexo = "M"
-			if(sheet.getCell(12, row).contents){
-				map.fechaDeIngreso = Date.parse( 'dd/MM/yyyy', sheet.getCell(12, row).contents)
-			}
-			map.activo = true
-			map.esMenor = false
-			map.deleted = false
-			map.observaciones  = sheet.getCell(14, row).contents
-			
-			// Datos Contacto de Emergencia
-			map.nombreContactoDeEmergencia = sheet.getCell(9, row).contents
-			map.apellidoContactoDeEmergencia = sheet.getCell(8, row).contents
-			map.telefonoContactoDeEmergencia = sheet.getCell(10, row).contents
-			map.celularContactoDeEmergencia = sheet.getCell(11, row).contents
-			
-			def socio=new Socio(map).save flush:true
-			new PerfilDeSocio(socio: socio, perfil: perfil1).save flush:true
-			cantidad++		
+			def socio=Socio.findByNombreAndApellido(map.nombre, map.apellido)
+			if(!socio){
+				map.dNI = sheet.getCell(2, row).contents
+				if(sheet.getCell(3, row).contents){
+					map.fechaDeNacimiento = Date.parse( 'dd/MM/yyyy', sheet.getCell(3, row).contents)
+				}
+				map.domicilio = sheet.getCell(4, row).contents
+				map.email = sheet.getCell(5, row).contents
+				map.telefono = sheet.getCell(6, row).contents
+				map.celular = sheet.getCell(7, row).contents
+				map.sexo = "M"
+				if(sheet.getCell(12, row).contents){
+					map.fechaDeIngreso = Date.parse( 'dd/MM/yyyy', sheet.getCell(12, row).contents)
+				}
+				map.activo = true
+				map.esMenor = false
+				map.deleted = false
+				map.observaciones  = sheet.getCell(14, row).contents
+				
+				// Datos Contacto de Emergencia
+				map.nombreContactoDeEmergencia = sheet.getCell(9, row).contents
+				map.apellidoContactoDeEmergencia = sheet.getCell(8, row).contents
+				map.telefonoContactoDeEmergencia = sheet.getCell(10, row).contents
+				map.celularContactoDeEmergencia = sheet.getCell(11, row).contents
+				
+				socio=new Socio(map).save flush:true
+				new PerfilDeSocio(socio: socio, perfil: perfil1).save flush:true
+				cantidad++	
+			}	
         }
 		flash.message = "Fueron importados "+cantidad+" socios desde el archivo "+file.getOriginalFilename()
         redirect (action:'upload')

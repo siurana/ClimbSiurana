@@ -27,7 +27,7 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:asistenciaInstance, action:'update']" method="PUT" >
+			<g:form autocomplete="off" url="[resource:asistenciaInstance, action:'update']" method="PUT" >
 				<g:hiddenField name="version" value="${asistenciaInstance?.version}" />
 				<fieldset class="form">
 					<g:render template="form"/>

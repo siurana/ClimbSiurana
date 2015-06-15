@@ -37,7 +37,7 @@
 				</g:eachError>
 			</ul>
 		</g:hasErrors>
-		<g:form url="[resource:subRubroInstance, action:'saveSubRubro']">
+		<g:form autocomplete="off" url="[resource:subRubroInstance, action:'saveSubRubro']">
 			<fieldset class="form">
 			
 			<div class="fieldcontain ">

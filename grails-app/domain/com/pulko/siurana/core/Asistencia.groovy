@@ -14,8 +14,6 @@ class Asistencia {
 		return getFechaHora().format('dd/MM/yyyy - HH:mm') +" - "+ getPerfil()
 	}
 	
-	def beforeInsert = { fechaHora = new Date() }
-	
 	public Boolean isToday(){		
 		getFechaHora().clearTime()==(new Date()).clearTime()
 	} 	

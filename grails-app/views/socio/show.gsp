@@ -1,4 +1,3 @@
-
 <%@ page import="com.pulko.siurana.core.Socio" %>
 <!DOCTYPE html>
 <html>
@@ -335,10 +334,11 @@
 			
 				<g:if test="${socioInstance?.modalidades}">
 				<li class="fieldcontain">
-					<span id="modalidades-label" class="property-label"><g:message code="socio.modalidades.label" default="Modalidades" /></span>
-					
+					<span id="modalidades-label" class="property-label"><g:message code="socio.modalidades.label" default="Modalidades" /></span>					
 						<g:each in="${socioInstance.modalidades}" var="m">
-						<span class="property-value" aria-labelledby="modalidades-label">${m?.perfil?.encodeAsHTML()}</span>
+						<span class="property-value" aria-labelledby="modalidades-label">${m?.perfil?.encodeAsHTML()}
+						<g:link name="modalidadRemove" action="removeModalidad" controller="socio" id="${m?.id}"><span class="remove" ></span></g:link>
+						</span>
 						</g:each>
 					
 				</li>
@@ -350,18 +350,22 @@
 					<g:link class="edit" action="edit" resource="${socioInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 					<g:link action="createPerfilDeSocio" params="['socio.id': socioInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'perfilDeSocio.label', default: 'Modalidad')])}</g:link>
-					<g:link controller="asistencia" action="create" params="['socio.id': socioInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'asistencia.label', default: 'Asistencia')])}</g:link>
+					<g:link controller="asistencia" action="createFromSocio" params="['socio.id': socioInstance?.id]">Agregar Asistencia</g:link>
 				</fieldset>
 			</g:form>
 		</div>
 		<script>
-$(function() {	
-	if($('#esMenor').is(':checked')){
-		$('#contactoEmergencia').hide();
-	} else {
-		$('#contactoPadres').hide();
-	}
- });
-</script>
+			$(function() {	
+				    if($('#esMenor').is(':checked')){
+				        $('#contactoEmergencia').hide();
+				    } else {
+				        $('#contactoPadres').hide();
+				    }				
+				$('[name=modalidadRemove]').click(function(event) {					
+			        $(this).parent().hide(2000);  					
+			    });
+							
+			 });
+		</script>
 	</body>
 </html>

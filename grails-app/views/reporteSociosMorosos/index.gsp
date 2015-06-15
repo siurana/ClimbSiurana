@@ -23,7 +23,7 @@
 				${flash.message}
 			</div>
 		</g:if>
-		<g:form url="[action:'result']">
+		<g:form autocomplete="off" url="[action:'result']">
 			<fieldset class="form">
 				<div
 					class="fieldcontain ${hasErrors(bean: perfilDeSocioInstance, field: 'perfil', 'error')} required">

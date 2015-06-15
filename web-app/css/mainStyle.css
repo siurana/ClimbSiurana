@@ -854,3 +854,15 @@ nav > div > ul > li > a:hover{
      padding-right: 50px !important
 	
 }
+
+.remove {
+	background-image: url("../images/skin/database_delete.png");
+	background-position: center center;
+	background-repeat: no-repeat;
+	display: inline-block;
+	width: 16px;	
+	height: 16px;
+	min-height: 16px;
+	min-width: 16px;
+	
+}

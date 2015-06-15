@@ -51,11 +51,17 @@
 						<span class="property-value" aria-labelledby="socio-label">${flash.asistenciasDelMes}</span>
 				</li>
 				</g:if>
+				<g:if test="${flash.asistenciaInstance?.socio}">
+				<li class="fieldcontain">
+					<span id="socio-label" class="property-label">Ultimo pago</span>
+						<span class="property-value" aria-labelledby="socio-label">${flash.lastCobroMessage}</span>
+				</li>
+				</g:if>
 			<br>
 			</ol>
 			</g:if>
 			
-			<g:form url="[resource:asistenciaInstance, action:'showSocio']" method="POST" >
+			<g:form autocomplete="off" url="[resource:asistenciaInstance, action:'showSocio']" method="POST" >
 				<fieldset class="form">
 						<label for="perfil">
 							DNI:							
@@ -71,8 +77,11 @@
         $(function() {            
         	setTimeout(function() {
         		$(".hideMe").hide("slow");
-            }, 5000);
-           
+            }, 30000);
+
+            $(".hideMe").click(function() {
+            	$(".hideMe").hide("slow");
+            });
         });
     </script>
 	</body>

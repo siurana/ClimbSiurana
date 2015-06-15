@@ -27,7 +27,7 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:perfilInstance, action:'update']" method="PUT" >
+			<g:form autocomplete="off" url="[resource:perfilInstance, action:'update']" method="PUT" >
 				<g:hiddenField name="version" value="${perfilInstance?.version}" />
 				<fieldset class="form">
 					<g:render template="form"/>

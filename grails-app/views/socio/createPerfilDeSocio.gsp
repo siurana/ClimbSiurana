@@ -24,7 +24,7 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[controller: 'socio', action:'savePerfilDeSocio']" >
+			<g:form autocomplete="off" url="[controller: 'socio', action:'savePerfilDeSocio']" >
 				<fieldset class="form">
 
 <div class="fieldcontain ${hasErrors(bean: perfilDeSocioInstance, field: 'socio', 'error')} required">
