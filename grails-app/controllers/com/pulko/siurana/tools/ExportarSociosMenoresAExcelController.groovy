@@ -48,6 +48,7 @@ class ExportarSociosMenoresAExcelController {
 		//	22	Fecha ingreso
 		//	23	Modalidad de pago
 		//	24	Observaciones
+		/// 25 Activo
         def row = 1
         WritableSheet sheet = workbook.createSheet('Socios', 0)
 		sheet.addCell(new Label(0, row, "Apellido"))
@@ -75,6 +76,7 @@ class ExportarSociosMenoresAExcelController {
 		sheet.addCell(new Label(22, row, "Fecha De Ingreso"))
 		sheet.addCell(new Label(23, row, "Modalidades"))
 		sheet.addCell(new Label(24, row, "Observaciones"))
+		sheet.addCell(new Label(25, row, "Activo"))
         Socio.list().each {  
 			if(it.esMenor){
 				row++
@@ -116,6 +118,7 @@ class ExportarSociosMenoresAExcelController {
 				}
 				sheet.addCell(new Label(23, row, modalidadDetail))
 				sheet.addCell(new Label(24, row, it.observaciones))
+				sheet.addCell(new Label(25, row, it.activo))
 			}
 		}
         try {

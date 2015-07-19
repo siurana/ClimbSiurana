@@ -35,6 +35,7 @@ class ExportarSociosAExcelController {
 		//	12	Fecha ingreso
 		//	13	Modalidad de pago
 		//	14	Observaciones
+		//	15	Activo
         def row = 1
         WritableSheet sheet = workbook.createSheet('Socios', 0)
 		sheet.addCell(new Label(0, row, "Apellido"))
@@ -52,6 +53,7 @@ class ExportarSociosAExcelController {
 		sheet.addCell(new Label(12, row, "Fecha De Ingreso"))
 		sheet.addCell(new Label(13, row, "Modalidades"))
 		sheet.addCell(new Label(14, row, "Observaciones"))
+		sheet.addCell(new Label(15, row, "Activo"))
         Socio.list().each {  
 			if(!it.esMenor){
 				row++
@@ -82,6 +84,7 @@ class ExportarSociosAExcelController {
 				}
 				sheet.addCell(new Label(13, row, modalidadDetail))
 				sheet.addCell(new Label(14, row, it.observaciones))
+				sheet.addCell(new Label(15, row, it.activo))
 			}
 		}
         try {

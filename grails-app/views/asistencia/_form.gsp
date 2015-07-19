@@ -16,7 +16,7 @@
 	</label>
 	<g:if test="${!asistenciaInstance?.id}">
 		<select id="socio" name="socio.id" required="" class="many-to-one">	
-			<g:each in="${com.pulko.siurana.core.Socio.list()}" status="i" var="socioInstance">
+			<g:each in="${com.pulko.siurana.core.Socio.list(sort: apellido)}" status="i" var="socioInstance">
 				<g:if test="${socioInstance?.activo}">
 					<option value="${socioInstance?.id}" modalidades="${socioInstance.modalidadesAsJson()}">${socioInstance}</option>
 				</g:if>
