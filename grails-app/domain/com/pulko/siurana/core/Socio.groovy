@@ -6,8 +6,8 @@ import grails.converters.JSON
 
 class Socio {
 
-    static hasMany = [modalidades: PerfilDeSocio, asistencias: Asistencia, cobros: Cobro]
-	
+	static hasMany = [modalidades: PerfilDeSocio, asistencias: Asistencia, cobros: Cobro]
+
 	String nombre
 	String apellido
 	String dNI
@@ -16,7 +16,7 @@ class Socio {
 	String email
 	String telefono
 	String celular
-	String sexo	
+	String sexo
 	Date fechaDeIngreso
 	Date fechaDeAlta
 	Date fechaDeModificacion
@@ -24,13 +24,13 @@ class Socio {
 	Boolean esMenor = false
 	Boolean deleted
 	String observaciones
-	
+
 	// Datos Contacto de Emergencia
 	String nombreContactoDeEmergencia
 	String apellidoContactoDeEmergencia
 	String telefonoContactoDeEmergencia
 	String celularContactoDeEmergencia
-	
+
 	// Datos Padre
 	String nombreDelPadre
 	String apellidoDelPadre
@@ -48,26 +48,26 @@ class Socio {
 	String emailDeLaMadre
 	String telefonoDeLaMadre
 	String celularDeLaMadre
-	
-	static constraints = {		
+
+	static constraints = {
 		nombre blank: false
 		apellido blank: false
 		dNI blank: true, nullable: true, size: 8..10
 		fechaDeNacimiento blank: false, nullable: true, format: 'dd/MM/yyyy'
 		domicilio blank: true, nullable: true, widget: 'textarea', maxSize: 200
-		email email:true, blank: true, nullable: true		
+		email email:true, blank: true, nullable: true
 		telefono blank: true, nullable: true
 		celular blank: true, nullable: true
-		
-		sexo blank: false, inList: ["M", "F"]		
+
+		sexo blank: false, inList: ["M", "F"]
 		esMenor blank: false
-		
+
 		// Datos Contacto de Emergencia
 		nombreContactoDeEmergencia blank: true, nullable: true
 		apellidoContactoDeEmergencia blank: true, nullable: true
 		telefonoContactoDeEmergencia blank: true, nullable: true
 		celularContactoDeEmergencia blank: true, nullable: true
-		
+
 		// Datos del Padre
 		nombreDelPadre blank: true, nullable: true
 		apellidoDelPadre blank: true, nullable: true
@@ -76,7 +76,7 @@ class Socio {
 		emailDelPadre email:true, blank: true, nullable: true
 		telefonoDelPadre blank: true, nullable: true
 		celularDelPadre blank: true, nullable: true
-		
+
 		// Datos de la Madre
 		nombreDeLaMadre blank: true, nullable: true
 		apellidoDeLaMadre blank: true, nullable: true
@@ -85,10 +85,10 @@ class Socio {
 		emailDeLaMadre email:true, blank: true, nullable: true
 		telefonoDeLaMadre blank: true, nullable: true
 		celularDeLaMadre blank: true, nullable: true
-		
+
 		fechaDeIngreso blank: true, nullable: true, format: 'dd/MM/yyyy'
 		observaciones blank: true, nullable: true, widget: 'textarea', maxSize: 200
-		
+
 		activo blank: false
 		fechaDeAlta blank: false, nullable: true, display: false, format: 'dd/MM/yyyy'
 		fechaDeModificacion blank: false, nullable: true, display: false, format: 'dd/MM/yyyy'
@@ -99,9 +99,9 @@ class Socio {
 		return rol != null ? rol.getNombre() == "ROLE_ADMIN" : false
 	}
 
-	def beforeInsert = { 
+	def beforeInsert = {
 		deleted = false
-		fechaDeAlta = new Date() 
+		fechaDeAlta = new Date()
 	}
 
 	def beforeUpdate = { fechaDeModificacion = new Date() }
@@ -109,14 +109,17 @@ class Socio {
 	def perfiles() {
 		return modalidades.collect{it.perfil}
 	}
-	
+
 	@Override String toString() {
 		return getApellido() +", "+ getNombre()
 	}
-	
+
 	def modalidadesAsJson(){
 		def converter = modalidades.perfil.collect{[id: it.id, arancel:it.arancel, descripcion: it.descripcion]} as JSON;
 		return converter
 	}
-	
+
+	def whenWasTheLastPayment(){
+		return !cobros ? "No se han registrado pagos aun" : cobros.last();
+	}
 }

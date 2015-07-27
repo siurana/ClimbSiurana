@@ -30,10 +30,15 @@
 					<label><g:message code="socio.apellido.label"
 							default="Apellido" /></label>
 					<g:textField name="apellido" value="${params.apellido}" />
-					<br> 
-					<label for="perfil"> Seleccione un periodo
+					<br><br> 
+					<label for="perfil">Dia
+					</label>					
+					<input type="radio" name="filterDate" value="filterDay" class="toHide"><g:datePicker name="fecha_dia" format="dd/MM/yyyy" precision="day"  value="${!params.fecha?new Date():params.fecha}" default="none" noSelection="['': '']" />
+					<br><br> 
+					<label for="perfil">Mes
 					</label>
-					<g:datePicker name="fecha" format="MM/yyyy" precision="month"  value="${!params.fecha?new Date():params.fecha}" default="none" noSelection="['': '']" />
+					<input type="radio" name="filterDate" value="filterMonth" class="toHide"> <g:datePicker name="fecha_mes" format="MM/yyyy" precision="month"  value="${!params.fecha?new Date():params.fecha}" default="none" noSelection="['': '']" />
+					
 				</div>
 				<fieldset>
 					<g:submitButton name="create" class="save" value="Filtrar" />
@@ -60,5 +65,22 @@
 			</table>
 	
 		</div>
+		<script>
+$(document).ready(function() {
+    $('input:radio[name=filterDate]').click(function(){
+        	var first=true;
+            if($(this).val() == "filterMonth"){
+            	first=false;
+            } 
+            $('#fecha_dia_day').prop('disabled', !first);
+            $('#fecha_dia_month').prop('disabled', !first);
+            $('#fecha_dia_year').prop('disabled', !first);
+            $('#fecha_mes_month').prop('disabled', first);
+            $('#fecha_mes_year').prop('disabled', first);
+    });
+ });
+</script>
 	</body>
 </html>
+
+

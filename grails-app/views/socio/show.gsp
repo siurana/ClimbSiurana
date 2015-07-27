@@ -102,6 +102,13 @@
 					
 				</li>
 				</g:if>
+				
+				<li class="fieldcontain">
+					<span id="fecha-ultimo-pago-label" class="property-label">Fecha del Ultimo Pago:</span>
+					
+						<span class="property-value" aria-labelledby="fecha-ultimo-pago-label">${socioInstance.whenWasTheLastPayment()}</span>
+					
+				</li>
 			
 				<li class="fieldcontain">
 					<span id="esMenor-label" class="property-label"><g:message code="socio.esMenor.label" default="Es Menor" /></span>

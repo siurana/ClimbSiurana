@@ -27,7 +27,7 @@ class AsistenciaController {
 		} else {
 			def asistenciasDeHoy = [] as Set
 			boolean tieneAlgunaAsistenciaParaRegistrarElDiaDeHoy=false
-			
+
 			if(socio.modalidades.size()==0){
 				request.withFormat {
 					form multipartForm {
@@ -38,7 +38,7 @@ class AsistenciaController {
 				}
 				return
 			}
-			
+
 			if(Asistencia.count()>0){
 				socio.asistencias.each {
 					if(it.isToday()){
@@ -85,48 +85,47 @@ class AsistenciaController {
 		Perfil perfilInstance = Perfil.get( params.idPerfil)
 		Asistencia asistenciaInstance=new Asistencia(fechaHora: new Date(), socio:socioInstance, perfil:perfilInstance)
 		asistenciaInstance.save flush:true
-		
+
 		flash.message = "La asistencia fue registrata con exito!!"
-		
+
 		int asistenciasDelMes = 0
 		def hoy = new Date()
 		def fromDate = hoy - 1
 		def toDate
-		
+
 		use(TimeCategory) {
 			toDate = hoy + 1.month
 		}
-		
+
 		if(Asistencia.count()>0){
 			socioInstance.asistencias.each {
 				if((it.fechaHora > fromDate) && (it.fechaHora < toDate) && (it.perfil.id==perfilInstance.id)){
 					asistenciasDelMes++
 				}
 			}
-			
 		} else {
 			asistenciasDelMes++
 		}
-		
+
 		def lastCobro=socioInstance.getCobros(
-			)
+				)
 		if(lastCobro){
 			flash.lastCobroMessage= lastCobro.last().fechaHora.format("dd MMM yyyy")
 		} else {
 			flash.lastCobroMessage="No se han registrados pagos aun!".encodeAsHTML()
 		}
-	
+
 		flash.asistenciasDelMes=asistenciasDelMes
 		flash.asistenciaInstance=asistenciaInstance
-		
-		
+
+
 		redirect  action: "openSearch", method: "POST"
 	}
 
 	def index(Integer max) {
-		def query
+		def query = Asistencia.where{1==1} 
 
-		if(params.fecha){
+		if(params.fecha_mes || params.fecha_dia){
 			String nombre =	params.nombre
 			if(!params.nombre){
 				params.nombre = "-"
@@ -135,13 +134,26 @@ class AsistenciaController {
 			if(!params.apellido){
 				params.apellido = "-"
 			}
-			if(params.nombre == "-" && params.apellido == "-"){
-				query = Asistencia.where {
-					month(fechaHora)==params.fecha_month && year(fechaHora)==params.fecha_year
+			
+			if(params.filterDate=="filterMonth"){
+				if(params.nombre == "-" && params.apellido == "-"){
+					query = Asistencia.where {
+						month(fechaHora)==params.fecha_mes_month && year(fechaHora)==params.fecha_mes_year
+					}
+				} else {
+					query = Asistencia.where {
+						(month(fechaHora)==params.fecha_mes_month && year(fechaHora)==params.fecha_mes_year && (socio.nombre =~ "%${params.nombre}%" || socio.apellido =~ "%${params.apellido}%"))
+					}
 				}
 			} else {
-				query = Asistencia.where {
-					(month(fechaHora)==params.fecha_month && year(fechaHora)==params.fecha_year && (socio.nombre =~ "%${params.nombre}%" || socio.apellido =~ "%${params.apellido}%"))
+				if(params.nombre == "-" && params.apellido == "-"){
+					query = Asistencia.where {
+						day(fechaHora)==params.fecha_dia_day && month(fechaHora)==params.fecha_dia_month && year(fechaHora)==params.fecha_dia_year
+					}
+				} else {
+					query = Asistencia.where {
+						(day(fechaHora)==params.fecha_dia_day && month(fechaHora)==params.fecha_dia_month && year(fechaHora)==params.fecha_dia_year && (socio.nombre =~ "%${params.nombre}%" || socio.apellido =~ "%${params.apellido}%"))
+					}
 				}
 			}
 
@@ -163,13 +175,13 @@ class AsistenciaController {
 		asistenciaInstance.fechaHora = new Date()
 		respond asistenciaInstance
 	}
-	
+
 	def createFromSocio() {
 		Asistencia asistenciaInstance = new Asistencia(params)
 		asistenciaInstance.fechaHora = new Date()
 		respond asistenciaInstance
 	}
-	
+
 	@Transactional
 	def saveFromSocio(Asistencia asistenciaInstance) {
 		if (asistenciaInstance == null) {
@@ -177,18 +189,17 @@ class AsistenciaController {
 			return
 		}
 
-		
+
 		if (asistenciaInstance.hasErrors()) {
 			respond asistenciaInstance.errors, view:'create'
 			return
 		}
 
 		asistenciaInstance.save flush:true
-			
+
 		request.withFormat {
 			form multipartForm {
-				flash.message = message(code: 'default.created.message', args: [message(code: 'asistencia.label', default: 'Asistencia'), asistenciaInstance.socio.id
-				])
+				flash.message = message(code: 'default.created.message', args: [message(code: 'asistencia.label', default: 'Asistencia'), asistenciaInstance.socio.id])
 				redirect action:"show", controller:"socio", id:asistenciaInstance.socio.id, method:"POST"
 			}
 			'*' { respond asistenciaInstance, [status: CREATED] }
@@ -203,7 +214,7 @@ class AsistenciaController {
 			return
 		}
 
-		
+
 		if (asistenciaInstance.hasErrors()) {
 			respond asistenciaInstance.errors, view:'create'
 			return
@@ -213,10 +224,7 @@ class AsistenciaController {
 
 		request.withFormat {
 			form multipartForm {
-				flash.message = message(code: 'default.created.message', args: [
-					message(code: 'asistencia.label', default: 'Asistencia'),
-					asistenciaInstance.id
-				])
+				flash.message = message(code: 'default.created.message', args: [message(code: 'asistencia.label', default: 'Asistencia'), asistenciaInstance.id])
 				redirect asistenciaInstance
 			}
 			'*' { respond asistenciaInstance, [status: CREATED] }
@@ -243,10 +251,7 @@ class AsistenciaController {
 
 		request.withFormat {
 			form multipartForm {
-				flash.message = message(code: 'default.updated.message', args: [
-					message(code: 'Asistencia.label', default: 'Asistencia'),
-					asistenciaInstance.id
-				])
+				flash.message = message(code: 'default.updated.message', args: [message(code: 'Asistencia.label', default: 'Asistencia'), asistenciaInstance.id])
 				redirect asistenciaInstance
 			}
 			'*'{ respond asistenciaInstance, [status: OK] }
@@ -265,10 +270,7 @@ class AsistenciaController {
 
 		request.withFormat {
 			form multipartForm {
-				flash.message = message(code: 'default.deleted.message', args: [
-					message(code: 'Asistencia.label', default: 'Asistencia'),
-					asistenciaInstance.id
-				])
+				flash.message = message(code: 'default.deleted.message', args: [message(code: 'Asistencia.label', default: 'Asistencia'), asistenciaInstance.id])
 				redirect action:"index", method:"GET"
 			}
 			'*'{ render status: NO_CONTENT }
@@ -278,10 +280,7 @@ class AsistenciaController {
 	protected void notFound() {
 		request.withFormat {
 			form multipartForm {
-				flash.message = message(code: 'default.not.found.message', args: [
-					message(code: 'asistencia.label', default: 'Asistencia'),
-					params.id
-				])
+				flash.message = message(code: 'default.not.found.message', args: [message(code: 'asistencia.label', default: 'Asistencia'), params.id])
 				redirect action: "index", method: "GET"
 			}
 			'*'{ render status: NOT_FOUND }
