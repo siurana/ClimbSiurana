@@ -194,6 +194,11 @@ class AsistenciaController {
 			respond asistenciaInstance.errors, view:'create'
 			return
 		}
+		
+		if (checkAsistenciaForToday(asistenciaInstance)) {
+			respond asistenciaInstance.errors, view:'create'
+			return
+		}
 
 		asistenciaInstance.save flush:true
 
@@ -206,6 +211,13 @@ class AsistenciaController {
 		}
 	}
 
+	def checkAsistenciaForToday(Asistencia asistenciaInstance){
+		def asistencia = Asistencia.findByFechaHoraAndSocioAndPerfil(asistenciaInstance.getFechaHora(), asistenciaInstance.getSocio(), asistenciaInstance.getPerfil())
+		if(asistencia){
+			asistenciaInstance.errors.reject("La asistencia yad ha sido tomada hoy dia ")
+		}
+		return asistencia
+	}
 
 	@Transactional
 	def save(Asistencia asistenciaInstance) {
@@ -220,6 +232,11 @@ class AsistenciaController {
 			return
 		}
 
+		if (checkAsistenciaForToday(asistenciaInstance)) {			
+			respond asistenciaInstance.errors, view:'create'
+			return
+		}
+		
 		asistenciaInstance.save flush:true
 
 		request.withFormat {

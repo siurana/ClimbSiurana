@@ -4,6 +4,8 @@ class Asistencia {
 	
 	static belongsTo = [socio: Socio, perfil: Perfil]
 	
+	Socio socio
+	Perfil perfil
 	Date fechaHora
 	
     static constraints = {
@@ -17,5 +19,4 @@ class Asistencia {
 	public Boolean isToday(){		
 		getFechaHora().clearTime()==(new Date()).clearTime()
 	} 	
-
 }
