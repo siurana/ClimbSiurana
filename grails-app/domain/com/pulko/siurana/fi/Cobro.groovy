@@ -17,4 +17,7 @@ class Cobro {
 		descripcion nullable: true
     }
 	
+	@Override String toString() {
+		return getFechaHora().format("dd/MM/YYYY")
+	}
 }
