@@ -18,6 +18,9 @@ class Cobro {
     }
 	
 	@Override String toString() {
+		if(getFechaHora()==null){
+			fechaHora=new Date()
+		}
 		return getFechaHora().format("dd/MM/YYYY")
 	}
 }

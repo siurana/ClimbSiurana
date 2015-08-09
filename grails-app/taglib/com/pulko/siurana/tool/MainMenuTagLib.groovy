@@ -33,7 +33,8 @@ class MainMenuTagLib {
 			[tittle: "Perfil de socio", action: "index", controller:"perfilDeSocio"]
 			]]])
 		buildingItemMenu([tittle: "Finanzas", submenu: [[
-			[tittle: "Cobros Pale", action: "index", controller:"cobro"],
+			[tittle: "Cobros Por Mes", action: "index", controller:"cobro"],
+			[tittle: "Cobros Por Dia", action: "index", controller:"cobroPorDia"],
 			[tittle: "Movimientos Contables", action: "index", controller:"movimientoContable"]
 			],[
 			[tittle: "Rubros", action: "index", controller:"rubro"],
