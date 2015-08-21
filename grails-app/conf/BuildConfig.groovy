@@ -60,6 +60,7 @@ grails.project.dependency.resolution = {
         compile ":scaffolding:2.1.2"
         compile ':cache:1.1.8'
         compile ":asset-pipeline:1.9.9"
+		compile ":class-domain-uml:0.1.5"
 		
 		
         // plugins needed at runtime but not for compilation

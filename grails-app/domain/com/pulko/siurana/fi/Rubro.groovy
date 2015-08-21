@@ -4,6 +4,7 @@ import grails.converters.JSON
 class Rubro {
 	
 	static hasMany = [subRubros:SubRubro]
+	List subRubros
 	String nombre
 	String descripcion
 	

@@ -866,3 +866,21 @@ nav > div > ul > li > a:hover{
 	min-width: 16px;
 	
 }
+
+.turnMinus, .turnPlus {
+	background-position: center center;
+	background-repeat: no-repeat;
+	display: list-item;
+	width: 11px;
+	min-width: 11px;
+	height: 11px;
+	min-height: 11px;
+}
+
+.turnMinus{
+	background-image:url(../images/skin/minus.gif);
+}
+
+.turnPlus {
+	background-image:url(../images/skin/plus.gif);
+}

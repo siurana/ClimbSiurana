@@ -107,13 +107,7 @@ class AsistenciaController {
 			asistenciasDelMes++
 		}
 
-		def lastCobro=socioInstance.getCobros(
-				)
-		if(lastCobro){
-			flash.lastCobroMessage= lastCobro.last().fechaHora.format("dd MMM yyyy")
-		} else {
-			flash.lastCobroMessage="No se han registrados pagos aun!".encodeAsHTML()
-		}
+		def lastCobro = socioInstance.whenWasTheLastPayment()
 
 		flash.asistenciasDelMes=asistenciasDelMes
 		flash.asistenciaInstance=asistenciaInstance

@@ -1,5 +1,6 @@
 
 <%@ page import="com.pulko.siurana.fi.SubRubro" %>
+<%@ page import="com.pulko.siurana.fi.Rubro" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -23,36 +24,41 @@
 			<table>
 			<thead>
 					<tr>
-					
-						<g:sortableColumn property="nombre" title="${message(code: 'subRubro.nombre.label', default: 'Nombre')}" />
-					
-						<g:sortableColumn property="descripcion" title="${message(code: 'subRubro.descripcion.label', default: 'Descripcion')}" />
-					
-						<g:sortableColumn property="tipo" title="${message(code: 'subRubro.tipo.label', default: 'Tipo')}" />
-					
+						<th width="11px"></th>					
 						<th><g:message code="subRubro.rubro.label" default="Rubro" /></th>
-					
+						<th><g:message code="subRubro.nombre.label" default="SubRubro" /></th>
+						<th><g:message code="subRubro.tipo.label" default="Tipo" /></th>					
 					</tr>
 				</thead>
-				<tbody>
-				<g:each in="${subRubroInstanceList}" status="i" var="subRubroInstance">
-					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
-						<td><g:link action="show" id="${subRubroInstance.id}">${fieldValue(bean: subRubroInstance, field: "nombre")}</g:link></td>
-					
-						<td>${fieldValue(bean: subRubroInstance, field: "descripcion")}</td>
-					
-						<td>${fieldValue(bean: subRubroInstance, field: "tipo")}</td>
-					
-						<td>${fieldValue(bean: subRubroInstance, field: "rubro")}</td>
-					
-					</tr>
+				<g:each in="${Rubro.list(sort: nombre).sort{it.nombre}}" status="i" var="rubroInstance">
+					<tbody class="rubroRow">
+						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+							<td class="turnPlus"></td>
+							<td colspan="3">${fieldValue(bean: rubroInstance, field: "nombre")}</td>				
+						</tr>
+					</tbody>
+					<tbody class="subRubroRow">	
+						<g:each in="${rubroInstance.subRubros}" var="subRubroInstance">
+							<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+								<td colspan="2"></td>
+								<td><g:link action="show" id="${subRubroInstance.id}">${fieldValue(bean: subRubroInstance, field: "nombre")}</g:link></td>					
+								<td>${fieldValue(bean: subRubroInstance, field: "tipo")}</td>							
+							</tr>					
+						</g:each>
+					</tbody>
 				</g:each>
-				</tbody>
 			</table>
-			<div class="pagination">
-				<g:paginate total="${subRubroInstanceCount ?: 0}" />
-			</div>
 		</div>
+		<script type="text/javascript">
+		jQuery(document).ready(function() {
+
+			  jQuery(".subRubroRow").hide();
+			  jQuery(".rubroRow").click(function()
+			  {				
+				jQuery(this).find("td:first-child").toggleClass( "turnPlus turnMinus");
+			    jQuery(this).next(".subRubroRow").slideToggle("slow");
+			  });
+		});
+		</script>
 	</body>
 </html>
