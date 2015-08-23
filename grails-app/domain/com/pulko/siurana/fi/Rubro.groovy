@@ -4,7 +4,7 @@ import grails.converters.JSON
 class Rubro {
 	
 	static hasMany = [subRubros:SubRubro]
-	List subRubros
+	static fetchMode = [subRubros: 'eager']
 	String nombre
 	String descripcion
 	

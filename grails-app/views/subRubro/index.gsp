@@ -38,7 +38,7 @@
 						</tr>
 					</tbody>
 					<tbody class="subRubroRow">	
-						<g:each in="${rubroInstance.subRubros}" var="subRubroInstance">
+						<g:each in="${rubroInstance?.subRubros}" var="subRubroInstance">
 							<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 								<td colspan="2"></td>
 								<td><g:link action="show" id="${subRubroInstance.id}">${fieldValue(bean: subRubroInstance, field: "nombre")}</g:link></td>					

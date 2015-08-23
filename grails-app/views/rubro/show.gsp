@@ -41,7 +41,7 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${rubroInstance?.subRubros}">
+				<g:if test="${rubroInstance.subRubros}">
 				<li class="fieldcontain">
 					<span id="subRubros-label" class="property-label"><g:message code="rubro.subRubros.label" default="Sub Rubros" /></span>
 					

@@ -45,8 +45,8 @@
 				<table>
 			<thead>
 					<tr>					
-						<th>Nombre</th>
 						<th>Apellido</th>					
+						<th>Nombre</th>
 						<th>DNI</th>					
 						<th>Telefono</th>						
 						<th>Celular</th>					
@@ -56,8 +56,8 @@
 				<tbody>
 				<g:each in="${lista}" status="i" var="socioInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-						<td>${fieldValue(bean: socioInstance, field: "nombre")}</td>
 						<td>${fieldValue(bean: socioInstance, field: "apellido")}</td>
+						<td>${fieldValue(bean: socioInstance, field: "nombre")}</td>
 						<td>${fieldValue(bean: socioInstance, field: "dNI")}</td>
 						<td>${fieldValue(bean: socioInstance, field: "telefono")}</td>
 						<td>${fieldValue(bean: socioInstance, field: "celular")}</td>

@@ -31,8 +31,17 @@ class ReporteMovimientosContablesController {
 
 		Double totalPalePorMes=cobros.sum{ it.monto }
 		Double totalPalePorDia=cobrosPorDia.sum{ it.monto }
+		if(totalPalePorMes==null){
+			totalPalePorMes = 0
+		}
+		
+		if(totalPalePorDia==null){
+			totalPalePorDia = 0
+		}
+		
+		
 		Double saldo = totalPalePorMes
-
+		
 		def movimientos = []
 		movimientos << [fecha:params.fecha, rubro: 'Muro', subRubro:'pases', detalle: 'Cuotas mensuales', egreso: 0, ingreso:totalPalePorMes, saldo: saldo]
 
