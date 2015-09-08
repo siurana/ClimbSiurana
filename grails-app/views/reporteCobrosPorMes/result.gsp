@@ -79,9 +79,6 @@
 						</g:each>
 					</tbody>
 				</table>
-				<div class="pagination">
-					<g:paginate total="${cobroInstanceCount ?: 0}" />
-				</div>
 			</li>
 		</ol>
 	</div>

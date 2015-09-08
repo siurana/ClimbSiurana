@@ -16,7 +16,6 @@
 		<g:message code="perfilDeSocio.socio.label" default="Socio" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="socio" name="socio.id" from="${com.pulko.siurana.core.Socio.list()}" optionKey="id" required="" value="${perfilDeSocioInstance?.socio?.id}" class="many-to-one"/>
-
+	<g:select id="socio" name="socio.id" from="${com.pulko.siurana.core.Socio.list(sort: apellido).sort{it.apellido}}" optionKey="id" required="" value="${perfilDeSocioInstance?.socio?.id}" class="many-to-one"/>
 </div>
 
