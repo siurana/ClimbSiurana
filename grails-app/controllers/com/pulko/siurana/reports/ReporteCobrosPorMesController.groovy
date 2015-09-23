@@ -8,18 +8,14 @@ class ReporteCobrosPorMesController {
     def index() { }
 	
 	def result(){
-		def fromDate = params.fecha - 1
-		def toDate
 		
-		use(TimeCategory) {
-			toDate = params.fecha + 1.month
+		def query = Cobro.where {
+			(month(fechaHora)==params.fecha_month && year(fechaHora)==params.fecha_year)
 		}
 		
-		def cobros = Cobro.findAll {
-			(fechaHora > fromDate) && (fechaHora < toDate)
-		}
+		def lista = (query.list()).sort{it.socio.apellido}
 		
-		if(cobros.size()==0){
+		if(lista.size()==0){
 			request.withFormat {
 				form multipartForm {
 					flash.message = "No hubo resultado para el mes seleccionado"
@@ -30,8 +26,8 @@ class ReporteCobrosPorMesController {
 			return
 		}
 		
-		Double totalAcumulado = cobros.sum{ it.monto }
+		Double totalAcumulado = lista.sum{ it.monto }
 		
-		[fecha: params.fecha, totalAcumulado:totalAcumulado, cobros: cobros, cobroInstanceCount: cobros.size()]
+		[fecha: params.fecha, totalAcumulado:totalAcumulado, cobros: lista, cobroInstanceCount: lista.size()]
 	}
 }
