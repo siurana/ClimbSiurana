@@ -26,7 +26,7 @@ class ExportarSociosMenoresAExcelController {
 		//	3	Fecha de Nacimiento
 		//	4	Domicilio
 		//	5	Mail
-		//	6	Teléfono
+		//	6	Telï¿½fono
 		//	7	Celular
 		
 		//	8	Apellido Padre
@@ -34,7 +34,7 @@ class ExportarSociosMenoresAExcelController {
 		//	10	DNI Padre
 		//	11	Domicilio Padre
 		//	12	Mail Padre
-		//	13	Teléfono Padre
+		//	13	Telï¿½fono Padre
 		//	14	Celular Padre
 		
 		//	15	Apellido Madre		
@@ -42,7 +42,7 @@ class ExportarSociosMenoresAExcelController {
 		//	17	DNI Madre
 		//	18	Domicilio Madre
 		//	19	Mail Madre
-		//	20	Teléfono Madre
+		//	20	Telï¿½fono Madre
 		//	21	Celular Madre
 		
 		//	22	Fecha ingreso
@@ -64,14 +64,14 @@ class ExportarSociosMenoresAExcelController {
 		sheet.addCell(new Label(10, row, "DNI Padre"))
 		sheet.addCell(new Label(11, row, "Domicilio Padre"))
 		sheet.addCell(new Label(12, row, "Mail Padre"))
-		sheet.addCell(new Label(13, row, "Teléfono Padre"))
+		sheet.addCell(new Label(13, row, "Telï¿½fono Padre"))
 		sheet.addCell(new Label(14, row, "Celular Padre"))
 		sheet.addCell(new Label(15, row, "Apellido Madre"))
 		sheet.addCell(new Label(16, row, "Nombre Madre"))
 		sheet.addCell(new Label(17, row, "DNI Madre"))
 		sheet.addCell(new Label(18, row, "Domicilio Madre"))
 		sheet.addCell(new Label(19, row, "Mail Madre"))
-		sheet.addCell(new Label(20, row, "Teléfono Madre"))
+		sheet.addCell(new Label(20, row, "Telï¿½fono Madre"))
 		sheet.addCell(new Label(21, row, "Celular Madre"))
 		sheet.addCell(new Label(22, row, "Fecha De Ingreso"))
 		sheet.addCell(new Label(23, row, "Modalidades"))
@@ -118,7 +118,7 @@ class ExportarSociosMenoresAExcelController {
 				}
 				sheet.addCell(new Label(23, row, modalidadDetail))
 				sheet.addCell(new Label(24, row, it.observaciones))
-				sheet.addCell(new Label(25, row, it.activo))
+				sheet.addCell(new Label(25, row, String.valueOf(it.activo)))
 			}
 		}
         try {

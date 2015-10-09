@@ -26,11 +26,11 @@ class ExportarSociosAExcelController {
 		//	3	Fecha de Nacimiento
 		//	4	Domicilio
 		//	5	Mail
-		//	6	Teléfono
+		//	6	Telï¿½fono
 		//	7	Celular
 		//	8	Apellido
 		//	9	Nombre
-		//	10	Telèfono
+		//	10	Telï¿½fono
 		//	11	Celular
 		//	12	Fecha ingreso
 		//	13	Modalidad de pago
@@ -82,9 +82,10 @@ class ExportarSociosAExcelController {
 					separador=", "
 									
 				}
+				
 				sheet.addCell(new Label(13, row, modalidadDetail))
 				sheet.addCell(new Label(14, row, it.observaciones))
-				sheet.addCell(new Label(15, row, it.activo))
+				sheet.addCell(new Label(15, row, String.valueOf(it.activo)))
 			}
 		}
         try {

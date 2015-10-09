@@ -6,6 +6,8 @@
 <meta name="layout" content="main">
 
 <title>Reporte Asistencias</title>
+   
+    
 </head>
 <body>
 	<a href="#list-perfilDeSocio" class="skip" tabindex="-1"><g:message
@@ -24,25 +26,22 @@
 			</div>
 		</g:if>
 		<g:form autocomplete="off" url="[action:'result']">
-			<fieldset class="form">
+			<fieldset class="form">				
 				<div
 					class="fieldcontain ${hasErrors(bean: perfilDeSocioInstance, field: 'perfil', 'error')} required">
 					<label for="perfil"> Seleccione un periodo
 					</label>
-					<g:datePicker name="fecha" format="MM/yyyy" precision="month"  value="${new Date()}" default="none" noSelection="['': '']" />
-				</div>
-				<div
-					class="fieldcontain ${hasErrors(bean: perfilDeSocioInstance, field: 'perfil', 'error')} required">
-					<label for="perfil"> Seleccione un periodo
-					</label>
-					<g:datePicker name="fechaDesde" precision="day"  value="${new Date()}" default="none" noSelection="['': '']" />
-					<g:datePicker name="fechaHasta" precision="day"  value="${new Date()}" default="none" noSelection="['': '']" />
+					<g:datepickerUI name="fechaDesde" required="true" value="${(new Date())-7}" options="{minDate:'-2Y', maxDate:'0'}" class="form-control"/>
+					<g:datepickerUI name="fechaHasta" required="true" value="${new Date()}" options="{minDate:'-2Y', maxDate:'0'}" class="form-control"/>
 				</div>
 			</fieldset>
+			
 			<fieldset class="buttons">
 				<g:submitButton value="Generar" name="generar" />
 			</fieldset>
 		</g:form>
 	</div>
+	
+
 </body>
 </html>

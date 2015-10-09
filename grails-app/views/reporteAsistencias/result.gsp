@@ -28,82 +28,36 @@
 			<li class="fieldcontain"><span id="perfilDeSocio-label"
 				class="property-label"> Periodo seleccionado </span> <span
 				class="property-value" aria-labelledby="perfilDeSocio-label">
-					<g:formatDate format="MMMM yyyy" date="${fecha}" />
+				 	<g:formatDate format="dd/MM/yyyy" date="${fechaDesde}" /> - 
+				 	<g:formatDate format="dd/MM/yyyy" date="${fechaHasta}" />
+				 	 
 			</span></li>
 			<li class="fieldcontain"><span id="perfilDeSocio-label"
-				class="property-label"> Total Ingresos </span> <span
+				class="property-label"> Total de Asistencias </span> <span
 				class="property-value" aria-labelledby="perfilDeSocio-label">
-					$ ${ingresos}
-			</span></li>
-			<li class="fieldcontain"><span id="perfilDeSocio-label"
-				class="property-label"> Total Egresos</span> <span
-				class="property-value" aria-labelledby="perfilDeSocio-label">
-					$ ${egresos}
-			</span></li>
-			<li class="fieldcontain"><span id="perfilDeSocio-label"
-				class="property-label"> Resultado</span> <span
-				class="property-value" aria-labelledby="perfilDeSocio-label">
-					$ ${saldo}
+				 	${totalAsistencias}
+				 	 
 			</span></li>
 			<li class="fieldcontain">
 				<h1>Detalle de los movimientos contables</h1>
 				<table>
-					<thead>
-						<tr>						
-							<th>Fecha</th>
-							<th>Rubro</th>
-							<th>Sub-Rubro</th>
-							<th>Detalle</th>
-							<th>Egreso</th>
-							<th>Ingreso</th>
-							<th>Saldo</th>
-						</tr>
-					</thead>
-					<tbody>
-						<g:each in="${movimientos}" status="i" var="movInstance">
-							<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-								<td><g:formatDate format="dd/MM/yyyy"
-										date="${movInstance?.fecha}" /></td>
-								<td>
-									${movInstance?.rubro?.encodeAsHTML()}
-								</td>
-								<td>
-									${movInstance?.subRubro?.encodeAsHTML()}
-								</td>
-								<td>
-									${movInstance?.detalle?.encodeAsHTML()}
-								</td>
-								<td>
-									$ ${movInstance?.egreso?.encodeAsHTML()}
-								</td>
-								<td>
-									$ ${movInstance?.ingreso?.encodeAsHTML()}
-								</td>
-								<td>
-									$ ${movInstance?.saldo?.encodeAsHTML()}
-								</td>
-
-							</tr>
-						</g:each>
-					</tbody>
-					<tfoot>
-						<tr>
-						<td colspan="4">
-									RESUMEN <g:formatDate format="MMMM yyyy" date="${fecha}" />
-								</td>
-								<td>
-									$ -${egresos}
-								</td>
-								<td>
-									$ ${ingresos}
-								</td>
-								<td>
-									$ ${saldo}
-								</td>
-								</tr>
-					</tfoot>
-				</table>				
-			</li>
+			<thead>
+					<tr>
+						<th><g:message code="asistencia.socio.label" default="Socio" /></th>
+						<th><g:message code="asistencia.fechaHora.label" default= "Fecha Hora"/></th>					
+						<th><g:message code="asistencia.perfil.label" default="Perfil" /></th>
+					</tr>
+				</thead>
+				<tbody>
+				<g:each in="${lista}" status="i" var="asistenciaInstance">
+					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+						<td><g:link action="show" id="${asistenciaInstance.id}">${fieldValue(bean: asistenciaInstance, field: "socio")}</g:link></td>
+						<td><g:formatDate format="dd/MM/yyyy" date="${asistenciaInstance.fechaHora}" /></td>					
+						<td>${fieldValue(bean: asistenciaInstance, field: "perfil")}</td>					
+					</tr>
+				</g:each>
+				</tbody>
+			</table>			</li>
 		</ol>
 	</div>
 </body>

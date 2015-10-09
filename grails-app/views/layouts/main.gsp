@@ -13,12 +13,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet"
 	href="${resource(dir: 'css', file: 'mainStyle.css')}" type="text/css">
+<link rel="stylesheet"
+	href="${resource(dir: 'css', file: 'jquery-ui.css')}" type="text/css">
 	
-<r:layoutResources />
+
 <g:layoutHead />
 </head>
 <body>
 	<g:javascript library="jquery" plugin="jquery" />
+<jqui:resources/>
 	<g:javascript library="application" />
 	<header>
 		<div id="logo"></div>

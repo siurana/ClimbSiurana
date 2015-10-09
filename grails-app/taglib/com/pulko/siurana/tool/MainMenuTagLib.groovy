@@ -43,7 +43,8 @@ class MainMenuTagLib {
 		buildingItemMenu([tittle: "Reportes", submenu: [[
 			[tittle: "Cobros por mes", action: "index", controller:"reporteCobrosPorMes"],
 			[tittle: "Listado de socios morosos", action: "index", controller:"reporteSociosMorosos"],
-			[tittle: "Reporte Movimientos Contables", action: "index", controller:"reporteMovimientosContables"]
+			[tittle: "Reporte Movimientos Contables", action: "index", controller:"reporteMovimientosContables"],
+			[tittle: "Reporte Asistencias", action: "index", controller:"reporteAsistencias"]
 			]]])
 		buildingItemMenu([tittle: "Herramientas", submenu: [[
 			[tittle: "Carga masiva", action: "upload", controller:"cargarDeSociosDesdeExcel"],
