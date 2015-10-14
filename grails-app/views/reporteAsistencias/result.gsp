@@ -55,7 +55,8 @@
 					</tr>
 				</g:each>
 				</tbody>
-			</table>			</li>
+			</table>			
+			</li>
 		</ol>
 	</div>
 </body>
