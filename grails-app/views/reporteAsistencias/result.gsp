@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta name="layout" content="main">
-<g:set var="tituloPage" value="Movimientos Contables" />
+<g:set var="tituloPage" value="Reporte de Asistencias" />
 <title>${tituloPage}</title>
 </head>
 <body>
@@ -39,21 +39,19 @@
 				 	 
 			</span></li>
 			<li class="fieldcontain">
-				<h1>Detalle de los movimientos contables</h1>
+				<h1>Detalle de asistencias</h1>
 				<table>
 			<thead>
 					<tr>
-						<th><g:message code="asistencia.socio.label" default="Socio" /></th>
 						<th><g:message code="asistencia.fechaHora.label" default= "Fecha Hora"/></th>					
-						<th><g:message code="asistencia.perfil.label" default="Perfil" /></th>
+						<th><g:message code="asistencia.socio.label" default="Socio" /></th>
 					</tr>
 				</thead>
 				<tbody>
-				<g:each in="${lista}" status="i" var="asistenciaInstance">
+				<g:each in="${lista}" status="i" var="item">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-						<td><g:link action="show" id="${asistenciaInstance.id}">${fieldValue(bean: asistenciaInstance, field: "socio")}</g:link></td>
-						<td><g:formatDate format="dd/MM/yyyy" date="${asistenciaInstance.fechaHora}" /></td>					
-						<td>${fieldValue(bean: asistenciaInstance, field: "perfil")}</td>					
+						<td><g:formatDate format="dd/MM/yyyy" date="${item[0]}" /></td>					
+						<td>${item[1]}</td>					
 					</tr>
 				</g:each>
 				</tbody>
