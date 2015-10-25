@@ -120,6 +120,11 @@ class Socio {
 	}
 
 	def whenWasTheLastPayment(){
-		return !cobros ? "No se han registrado pagos aun" : cobros.last();
+		if(!cobros){
+			return "No se han registrado pagos aun"
+		}
+		else {
+			return cobros.sort{it.fechaHora}.last()
+		}
 	}
 }
