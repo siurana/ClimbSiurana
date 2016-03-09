@@ -38,13 +38,13 @@ overflow-y: scroll;
 }
 
 #logo {
-    background-image:url(../images/logo.jpg);
-    background-size: 80px 80px;
+    background-image:url(../images/logo.PNG);
+    background-size: 273px 164px;
 	background-repeat:no-repeat;
 	background-position:center top;
 	
-	min-height: 80px;
-	min-width: 80px;
+	min-height: 164px;
+	min-width: 273px;
 	position: absolute;
 	float: left;
 	margin-top: 20px;

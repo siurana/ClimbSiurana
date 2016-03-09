@@ -67,6 +67,7 @@ class MainMenuTagLib {
 		buildingItemMenu([tittle: "Socios", action: "index", controller:"socio"])			
 		buildingItemMenu([tittle: "Asistencias", action: "index", controller:"asistencia"])
 		buildingItemMenu([tittle: "Cobros Pale", action: "index", controller:"cobro"])
+		buildingItemMenu([tittle: "Cobros Por Dia", action: "index", controller:"cobroPorDia"])
 		
 		endMainMenu()		
 		endMenu()

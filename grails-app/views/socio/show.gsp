@@ -331,11 +331,9 @@
 				<g:if test="${socioInstance?.asistencias}">
 				<li class="fieldcontain">
 					<span id="asistencias-label" class="property-label"><g:message code="socio.asistencias.label" default="Asistencias" /></span>
-					
-						<g:each in="${socioInstance.asistencias}" var="a">
+						<g:each in="${socioInstance.asistencias.sort{it.fechaHora}.reverse()}" var="a">
 						<span class="property-value" aria-labelledby="asistencias-label">${a?.encodeAsHTML()}</span>
 						</g:each>
-					
 				</li>
 				</g:if>
 			

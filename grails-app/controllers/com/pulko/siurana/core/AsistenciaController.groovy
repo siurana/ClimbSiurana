@@ -111,7 +111,7 @@ class AsistenciaController {
 
 		flash.asistenciasDelMes=asistenciasDelMes
 		flash.asistenciaInstance=asistenciaInstance
-
+        flash.lastCobroMessage = lastCobro
 
 		redirect  action: "openSearch", method: "POST"
 	}
